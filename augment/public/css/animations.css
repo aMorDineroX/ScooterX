@@ -1,0 +1,135 @@
+/* Animations and 3D Effects */
+
+/* Animations pour les éléments apparaissant au scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation 3D hover pour les cartes de modèles */
+.model-card {
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+}
+
+.model-card:hover {
+  transform: translateY(-10px);
+}
+
+.model-card .model-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.model-card .model-image .model-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.model-card:hover .model-image .model-3d {
+  transform: rotateY(15deg);
+}
+
+/* Animation pour les statistiques */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-item.animated {
+  animation: countUp 0.8s ease forwards;
+}
+
+/* Swipe pour galeries mobiles */
+.swipe-gallery {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.swipe-container {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.swipe-item {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.swipe-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.swipe-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.swipe-dot.active {
+  background: var(--primary);
+}
+
+.swipe-arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.swipe-prev,
+.swipe-next {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.swipe-prev:hover,
+.swipe-next:hover {
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.swipe-prev {
+  margin-left: 10px;
+}
+
+.swipe-next {
+  margin-right: 10px;
+}
+
+/* Responsive styles for swipe gallery */
+@media (max-width: 768px) {
+  .swipe-arrows {
+    display: none;
+  }
+  
+  .swipe-nav {
+    display: flex;
+  }
+}

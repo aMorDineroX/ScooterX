@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %> | ScooterX</title>
-    
+
     <!-- Styles communs -->
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/animations.css">
     <link rel="stylesheet" href="/css/styles.css">
-    
+
     <!-- Styles spécifiques à la page -->
     <% if (locals.cssFiles && cssFiles.length > 0) { %>
         <% cssFiles.forEach(function(cssFile) { %>
             <link rel="stylesheet" href="/css/<%= cssFile %>">
         <% }); %>
     <% } %>
-    
+
     <!-- Favicon -->
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    
+
     <!-- Meta tags pour SEO -->
     <meta name="description" content="<%= locals.description || 'ScooterX - La révolution des scooters électriques. Découvrez nos modèles innovants, performants et respectueux de l\'environnement.' %>">
     <meta name="keywords" content="<%= locals.keywords || 'scooter électrique, mobilité urbaine, transport écologique, ScooterX' %>">
-    
+
     <!-- Open Graph tags pour les réseaux sociaux -->
     <meta property="og:title" content="<%= title %> | ScooterX">
     <meta property="og:description" content="<%= locals.description || 'ScooterX - La révolution des scooters électriques. Découvrez nos modèles innovants, performants et respectueux de l\'environnement.' %>">

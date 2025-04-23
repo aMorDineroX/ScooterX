@@ -40,6 +40,11 @@ app.use('/js/main.js', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/js/main-new.js'));
 });
 
+// Servir le fichier CSS commun
+app.use('/css/common.css', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/css/common.css'));
+});
+
 // Base de données simulée
 const users = [
   {

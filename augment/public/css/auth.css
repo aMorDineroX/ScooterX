@@ -1,6 +1,16 @@
 /* Auth Page Styles */
+:root {
+    --primary: #1ED760;
+    --secondary: #0A2540;
+    --accent: #36B9CC;
+    --light: #F8F9FA;
+    --dark: #212529;
+    --gray: #6C757D;
+    --gradient: linear-gradient(135deg, #1ED760, #0A2540);
+}
+
 body {
-    background: linear-gradient(135deg, #1ED760, #0A2540);
+    background: var(--gradient);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -64,37 +74,48 @@ h1 {
     font-weight: bold;
     margin: 0;
     margin-bottom: 15px;
+    color: var(--secondary);
 }
 
-p {
+span {
     font-size: 14px;
-    font-weight: 100;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    margin: 20px 0 30px;
+    color: var(--gray);
+    margin-bottom: 20px;
 }
 
 input {
-    background-color: #eee;
+    background-color: #f6f6f6;
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
     width: 100%;
     border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(30, 215, 96, 0.3);
 }
 
 button {
-    border-radius: 20px;
-    border: 1px solid #764ba2;
-    background-color: #764ba2;
+    border-radius: 50px;
+    border: 2px solid var(--primary);
+    background-color: var(--primary);
     color: white;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 600;
     padding: 12px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: transform 80ms ease-in;
+    transition: all 0.3s ease;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: transparent;
+    color: var(--primary);
 }
 
 button:active {
@@ -103,7 +124,13 @@ button:active {
 
 button.ghost {
     background-color: transparent;
-    border-color: white;
+    border: 2px solid white;
+    color: white;
+}
+
+button.ghost:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
 .overlay-container {
@@ -186,41 +213,74 @@ button.ghost {
     width: 40px;
     text-decoration: none;
     color: #333;
+    transition: all 0.3s ease;
+}
+
+.social-container a:hover {
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 .form-footer {
     margin-top: 15px;
     font-size: 13px;
-    color: #777;
+    color: var(--gray);
+    padding: 0 20px;
 }
 
 .form-footer a {
-    color: #1ED760;
+    color: var(--primary);
     text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+.forgot-password {
+    margin: 15px 0;
+    text-decoration: none;
+    color: var(--primary);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
 }
 
 .error-message {
-    background-color: #ffdddd;
-    color: #ff0000;
-    padding: 10px;
+    background-color: #ffebee;
+    color: #e53935;
+    padding: 10px 15px;
     border-radius: 5px;
     margin-bottom: 15px;
     width: 100%;
+    font-size: 14px;
+}
+
+.success-message {
+    background-color: #e8f5e9;
+    color: #43a047;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.home-link {
+    margin-top: 20px;
     text-align: center;
 }
 
-.back-to-home {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.home-link a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
 }
 
-.back-to-home:hover {
+.home-link a:hover {
     text-decoration: underline;
 }

@@ -7,27 +7,3 @@
         <script src="/js/<%= jsFile %>"></script>
     <% }); %>
 <% } %>
-
-<!-- Script pour le menu déroulant utilisateur -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const dropdownToggle = document.querySelector('.dropdown-toggle');
-        
-        if (dropdownToggle) {
-            dropdownToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                this.parentElement.classList.toggle('active');
-            });
-            
-            // Fermer le menu déroulant en cliquant ailleurs
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.dropdown')) {
-                    const dropdowns = document.querySelectorAll('.dropdown');
-                    dropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('active');
-                    });
-                }
-            });
-        }
-    });
-</script>
