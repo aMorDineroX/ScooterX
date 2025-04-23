@@ -1,8 +1,8 @@
-# 🛵 E-Scoot - Application de Vente de Scooters Électriques
+# 🛵 ScooterX - Application de Vente de Scooters Électriques
 
 ## 📋 Présentation
 
-E-Scoot est une plateforme web moderne dédiée à la vente de scooters électriques. Notre application permet aux utilisateurs de parcourir notre catalogue, comparer les différents modèles, et réaliser leurs achats en ligne de manière simple et sécurisée.
+ScooterX est une plateforme web moderne dédiée à la vente de scooters électriques. Notre application permet aux utilisateurs de parcourir notre catalogue, comparer les différents modèles, et réaliser leurs achats en ligne de manière simple et sécurisée.
 
 ## ✨ Fonctionnalités
 
@@ -143,3 +143,16 @@ Pour toute question ou suggestion, n'hésitez pas à nous contacter :
 - Email : contact@e-scoot.com
 - Twitter : [@e_scoot](https://twitter.com/e_scoot)
 - Site web : [www.e-scoot.com](https://www.e-scoot.com)
+
+# ScooterX - Version augmentée
+
+Version augmentée de l'application ScooterX avec des fonctionnalités avancées.
+
+## Fonctionnalités supplémentaires
+
+- Interface utilisateur améliorée
+- Système de réservation avancé
+- Gestion des commandes optimisée
+- Intégration de paiement sécurisée
+- Programme de fidélité
+- API REST complète

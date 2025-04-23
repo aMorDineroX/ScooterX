@@ -10,45 +10,18 @@
       </button>
     </div>
     <div class="navbar-menu">
-      <% if (!locals.dashboardHeader) { %>
-        <ul class="navbar-nav">
-          <li class="nav-item"><a href="/#hero" class="nav-link <%= locals.activePage === 'home' ? 'active' : '' %>">Accueil</a></li>
-          <li class="nav-item"><a href="/#models" class="nav-link">Modèles</a></li>
-          <li class="nav-item"><a href="/#features" class="nav-link <%= locals.activePage === 'features' ? 'active' : '' %>">Fonctionnalités</a></li>
-          <li class="nav-item"><a href="/#testimonials" class="nav-link <%= locals.activePage === 'testimonials' ? 'active' : '' %>">Témoignages</a></li>
-          <li class="nav-item"><a href="/contact" class="nav-link <%= locals.activePage === 'contact' ? 'active' : '' %>">Contact</a></li>
-        </ul>
-        <div class="navbar-actions">
-          <a href="/search" class="btn btn-sm btn-outline">Voir les modèles</a>
-          <a href="/essai" class="btn btn-sm btn-primary">Essai gratuit</a>
-        </div>
-      <% } else { %>
-        <ul class="navbar-nav">
-          <li class="nav-item"><a href="/" class="nav-link <%= locals.activePage === 'home' ? 'active' : '' %>">Accueil</a></li>
-          <li class="nav-item"><a href="/dashboard" class="nav-link <%= locals.activePage === 'dashboard' ? 'active' : '' %>">Tableau de bord</a></li>
-          <li class="nav-item"><a href="/dashboard/reservations" class="nav-link <%= locals.activePage === 'reservations' ? 'active' : '' %>">Mes réservations</a></li>
-          <li class="nav-item"><a href="/profile" class="nav-link <%= locals.activePage === 'profile' ? 'active' : '' %>">Mon profil</a></li>
-        </ul>
-        <div class="navbar-actions">
-          <% if (locals.user) { %>
-            <div class="dropdown">
-              <a href="#" class="dropdown-toggle">
-                <span class="user-name"><%= user.name || user.email.split('@')[0] %></span>
-                <span class="dropdown-icon">▼</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="/dashboard">Tableau de bord</a></li>
-                <li><a href="/profile">Mon profil</a></li>
-                <li><a href="/dashboard/reservations">Mes réservations</a></li>
-                <li class="divider"></li>
-                <li><a href="/logout">Déconnexion</a></li>
-              </ul>
-            </div>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="/" class="<%= activePage === 'home' ? 'active' : '' %>">Accueil</a></li>
+          <li><a href="/search" class="<%= activePage === 'search' ? 'active' : '' %>">Scooters</a></li>
+          <li><a href="/dashboard" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Mon compte</a></li>
+          <% if (user) { %>
+            <li><a href="/logout" class="btn btn-outline">Déconnexion</a></li>
           <% } else { %>
-            <a href="/login" class="btn btn-sm btn-outline">Se connecter</a>
+            <li><a href="/login" class="btn btn-outline">Connexion</a></li>
           <% } %>
-        </div>
-      <% } %>
+        </ul>
+      </nav>
     </div>
   </div>
 </nav>

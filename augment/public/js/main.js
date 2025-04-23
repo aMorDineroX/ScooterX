@@ -1,3 +1,10 @@
+// Configuration globale de l'application
+const config = {
+    appName: 'ScooterX',
+    apiBaseUrl: '/api',
+    currency: '€',
+};
+
 // Header scroll effect
 window.addEventListener('scroll', function() {
     const header = document.getElementById('header');
@@ -51,4 +58,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Mise à jour du titre de la page
+    document.title = document.title.replace('E-Scoot', 'ScooterX');
+
+    // Mise à jour du logo dans le header si présent
+    const logoElement = document.querySelector('.logo');
+    if (logoElement) {
+        logoElement.innerHTML = 'Scooter<span>X</span>';
+    }
 });

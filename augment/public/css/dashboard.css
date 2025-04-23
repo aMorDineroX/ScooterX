@@ -1,5 +1,11 @@
 /* Dashboard Styles */
 :root {
+    --brand-primary: #1ED760;
+    --brand-secondary: #169C46;
+    --brand-accent: #FFD700;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --background: #FFFFFF;
     --primary: #1ED760;
     --secondary: #0A2540;
     --accent: #36B9CC;
@@ -14,11 +20,12 @@
 
 /* Dashboard Header */
 .dashboard-header {
-    background-color: var(--secondary);
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+    color: white;
+    padding: 2rem 0;
     position: fixed;
     width: 100%;
     z-index: 1000;
-    padding: 1rem 0;
 }
 
 .dashboard-header .logo,
@@ -68,6 +75,12 @@
     font-size: 1.1rem;
 }
 
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
 /* Dashboard Stats */
 .dashboard-stats {
     display: grid;
@@ -77,12 +90,12 @@
 }
 
 .stat-card {
-    background-color: white;
+    background: white;
     border-radius: 10px;
     padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -107,6 +120,12 @@
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--dark);
+}
+
+.stat-card .value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand-primary);
 }
 
 /* Dashboard Sections */
@@ -212,6 +231,21 @@
 .btn-danger:hover {
     background-color: transparent;
     color: var(--danger);
+}
+
+.action-button {
+    background-color: var(--brand-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: var(--brand-secondary);
+    transform: translateY(-2px);
 }
 
 /* Empty State */

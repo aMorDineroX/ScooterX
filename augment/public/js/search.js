@@ -34,6 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let filteredResults = [];
     let allResults = [];
     
+    // Configuration de la recherche
+    const searchConfig = {
+        appName: 'ScooterX',
+        models: {
+            urban: 'ScooterX Urban',
+            pro: 'ScooterX Pro',
+            max: 'ScooterX Max'
+        }
+    };
+
     // Initialize
     initializeResults();
     initializeRangeSliders();
@@ -366,5 +376,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return Array.from(checkboxes)
             .filter(checkbox => checkbox.checked)
             .map(checkbox => checkbox.value);
+    }
+
+    // Fonction de filtrage des résultats
+    function filterResults(filters) {
+        const scooters = document.querySelectorAll('.scooter-card');
+        scooters.forEach(scooter => {
+            // ...existing code...
+        });
     }
 });

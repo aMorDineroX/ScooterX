@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Configuration du profil utilisateur
+    const profileConfig = {
+        appName: 'ScooterX',
+        apiEndpoint: '/api/profile',
+    };
+
     // Profile menu navigation
     const menuItems = document.querySelectorAll('.profile-menu-item');
     const profileSections = document.querySelectorAll('.profile-section');
@@ -497,5 +503,14 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         return countries[countryCode] || countryCode;
+    }
+
+    // Mise à jour des préférences de notification
+    function updateNotificationPreferences(preferences) {
+        const userData = {
+            notificationSettings: preferences,
+            appName: 'ScooterX',
+        };
+        // Here you would typically send the userData to the server
     }
 });

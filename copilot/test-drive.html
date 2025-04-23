@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réserver un essai - ScooterX</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="brand">
+                <img src="images/logo.png" alt="ScooterX Logo" class="logo">
+                <span class="brand-name">ScooterX</span>
+            </div>
+            <!-- ...existing code... -->
+        </nav>
+    </header>
+
+    <main>
+        <section class="test-drive-hero">
+            <div class="container">
+                <h1>Essayez ScooterX gratuitement</h1>
+                <p>Découvrez l'expérience ScooterX lors d'un essai personnalisé.</p>
+            </div>
+        </section>
+
+        <section class="test-drive-content">
+            <div class="container">
+                <div class="test-drive-steps">
+                    <div class="step active">
+                        <span class="step-number">1</span>
+                        <span class="step-text">Choisir un modèle</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-text">Sélectionner une date</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-text">Confirmer</span>
+                    </div>
+                </div>
+
+                <div class="model-selection" id="model-selection">
+                    <!-- La sélection du modèle sera remplie dynamiquement -->
+                </div>
+
+                <div id="booking-calendar"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="ScooterX Logo" class="footer-logo">
+                <p>ScooterX - La mobilité urbaine réinventée</p>
+            </div>
+            <!-- ...existing code... -->
+        </div>
+    </footer>
+
+    <script src="/js/booking.js"></script>
+    <script>
+        // Charger les modèles de scooters
+        fetch('/api/scooters')
+            .then(response => response.json())
+            .then(scooters => {
+                const modelSelection = document.getElementById('model-selection');
+                modelSelection.innerHTML = scooters.map(scooter => `
+                    <div class="model-card" onclick="selectModel(${JSON.stringify(scooter)})">
+                        <img src="${scooter.image}" alt="${scooter.name}">
+                        <h3>${scooter.name}</h3>
+                        <p>${scooter.description}</p>
+                        <ul class="specs">
+                            <li>Autonomie: ${scooter.range}</li>
+                            <li>Puissance: ${scooter.power}</li>
+                            <li>Vitesse max: ${scooter.speed}</li>
+                        </ul>
+                        <button class="btn btn-outline">Sélectionner ce modèle</button>
+                    </div>
+                `).join('');
+            });
+
+        function selectModel(scooter) {
+            // Mettre à jour l'étape active
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.toggle('active', index === 1);
+            });
+
+            // Masquer la sélection de modèle et afficher le calendrier
+            document.getElementById('model-selection').style.display = 'none';
+            document.getElementById('booking-calendar').style.display = 'block';
+
+            // Mettre à jour le scooter sélectionné dans le calendrier
+            bookingCalendar.setScooter(scooter);
+        }
+    </script>
+
+    <style>
+        .test-drive-hero {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .test-drive-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .test-drive-hero .lead {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .test-drive-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .test-drive-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--light);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 0 1rem;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background: var(--primary);
+            color: white;
+        }
+
+        .step-text {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .model-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .model-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .model-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .model-card h3 {
+            padding: 1rem;
+            margin: 0;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .model-card p {
+            padding: 1rem;
+            margin: 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .model-card .specs {
+            list-style: none;
+            padding: 0 1rem;
+            margin: 0;
+        }
+
+        .model-card .specs li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light);
+            font-size: 0.9rem;
+        }
+
+        .model-card .btn {
+            margin: 1rem;
+            width: calc(100% - 2rem);
+        }
+
+        #booking-calendar {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .test-drive-steps {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .test-drive-steps::before {
+                width: 2px;
+                height: 100%;
+                left: 25px;
+                top: 0;
+            }
+
+            .step {
+                flex-direction: row;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .step-number {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</body>
+</html>

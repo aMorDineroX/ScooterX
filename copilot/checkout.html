@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement | ScooterX</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container nav-container">
+            <a href="/" class="logo">Scooter<span>X</span></a>
+            
+            <div class="checkout-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-name">Informations</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-name">Livraison</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-name">Paiement</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-name">Confirmation</div>
+                </div>
+            </div>
+
+            <div class="checkout-secure">
+                <span class="secure-icon">🔒</span>
+                <span>Paiement sécurisé</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="checkout-container">
+                <div class="checkout-form">
+                    <section class="checkout-section active" id="information-section">
+                        <h2>Informations personnelles</h2>
+                        
+                        <div class="form-group">
+                            <label for="email">Email*</label>
+                            <input type="email" id="email" required placeholder="votre@email.com">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstname">Prénom*</label>
+                                <input type="text" id="firstname" required placeholder="Prénom">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">Nom*</label>
+                                <input type="text" id="lastname" required placeholder="Nom">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Téléphone*</label>
+                            <input type="tel" id="phone" required placeholder="06 12 34 56 78">
+                        </div>
+                        
+                        <h3>Adresse de facturation</h3>
+                        
+                        <div class="form-group">
+                            <label for="address">Adresse*</label>
+                            <input type="text" id="address" required placeholder="Numéro et nom de rue">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address2">Complément d'adresse</label>
+                            <input type="text" id="address2" placeholder="Appartement, bâtiment, étage...">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="postal">Code postal*</label>
+                                <input type="text" id="postal" required placeholder="75001">
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Ville*</label>
+                                <input type="text" id="city" required placeholder="Paris">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="country">Pays*</label>
+                            <select id="country" required>
+                                <option value="FR" selected>France</option>
+                                <option value="BE">Belgique</option>
+                                <option value="CH">Suisse</option>
+                                <option value="LU">Luxembourg</option>
+                                <option value="MC">Monaco</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="different-shipping">
+                            <label for="different-shipping">Utiliser une adresse différente pour la livraison</label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="newsletter">
+                            <label for="newsletter">Je souhaite recevoir les actualités et offres spéciales de ScooterX</label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <a href="/cart" class="btn btn-outline">Retour au panier</a>
+                            <button class="btn btn-primary next-step" data-next="shipping-section">Continuer vers la livraison</button>
+                        </div>
+                    </section>
+                    
+                    <section class="checkout-section" id="shipping-section">
+                        <h2>Méthode de livraison</h2>
+                        
+                        <div class="shipping-options">
+                            <div class="shipping-option">
+                                <input type="radio" name="shipping" id="shipping-standard" checked>
+                                <label for="shipping-standard">
+                                    <div class="option-details">
+                                        <div class="option-name">Livraison standard</div>
+                                        <div class="option-description">Livraison sous 3-5 jours ouvrés</div>
+                                    </div>
+                                    <div class="option-price">Gratuit</div>
+                                </label>
+                            </div>
+                            
+                            <div class="shipping-option">
+                                <input type="radio" name="shipping" id="shipping-express">
+                                <label for="shipping-express">
+                                    <div class="option-details">
+                                        <div class="option-name">Livraison express</div>
+                                        <div class="option-description">Livraison sous 24-48h</div>
+                                    </div>
+                                    <div class="option-price">49,00 €</div>
+                                </label>
+                            </div>
+                            
+                            <div class="shipping-option">
+                                <input type="radio" name="shipping" id="shipping-pickup">
+                                <label for="shipping-pickup">
+                                    <div class="option-details">
+                                        <div class="option-name">Retrait en boutique</div>
+                                        <div class="option-description">Disponible sous 24h</div>
+                                    </div>
+                                    <div class="option-price">Gratuit</div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="pickup-locations hidden" id="pickup-locations">
+                            <h3>Choisissez votre point de retrait</h3>
+                            
+                            <div class="locations-list">
+                                <div class="location-item">
+                                    <input type="radio" name="pickup" id="pickup-paris" checked>
+                                    <label for="pickup-paris">
+                                        <div class="location-info">
+                                            <div class="location-name">ScooterX Paris Centre</div>
+                                            <div class="location-address">24 rue de Rivoli, 75004 Paris</div>
+                                            <div class="location-hours">Lun-Sam: 10h-19h, Dim: Fermé</div>
+                                        </div>
+                                        <div class="location-distance">2.4 km</div>
+                                    </label>
+                                </div>
+                                
+                                <div class="location-item">
+                                    <input type="radio" name="pickup" id="pickup-neuilly">
+                                    <label for="pickup-neuilly">
+                                        <div class="location-info">
+                                            <div class="location-name">ScooterX Neuilly</div>
+                                            <div class="location-address">16 avenue Charles de Gaulle, 92200 Neuilly</div>
+                                            <div class="location-hours">Lun-Sam: 10h-19h, Dim: Fermé</div>
+                                        </div>
+                                        <div class="location-distance">5.7 km</div>
+                                    </label>
+                                </div>
+                                
+                                <div class="location-item">
+                                    <input type="radio" name="pickup" id="pickup-boulogne">
+                                    <label for="pickup-boulogne">
+                                        <div class="location-info">
+                                            <div class="location-name">ScooterX Boulogne</div>
+                                            <div class="location-address">43 avenue Jean-Baptiste Clément, 92100 Boulogne</div>
+                                            <div class="location-hours">Lun-Sam: 10h-19h, Dim: Fermé</div>
+                                        </div>
+                                        <div class="location-distance">7.2 km</div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-outline prev-step" data-prev="information-section">Retour aux informations</button>
+                            <button class="btn btn-primary next-step" data-next="payment-section">Continuer vers le paiement</button>
+                        </div>
+                    </section>
+                    
+                    <section class="checkout-section" id="payment-section">
+                        <h2>Mode de paiement</h2>
+                        
+                        <div class="payment-methods">
+                            <div class="payment-method">
+                                <input type="radio" name="payment" id="payment-card" checked>
+                                <label for="payment-card">
+                                    <div class="method-icon">💳</div>
+                                    <div class="method-name">Carte bancaire</div>
+                                </label>
+                            </div>
+                            
+                            <div class="payment-method">
+                                <input type="radio" name="payment" id="payment-paypal">
+                                <label for="payment-paypal">
+                                    <div class="method-icon">P</div>
+                                    <div class="method-name">PayPal</div>
+                                </label>
+                            </div>
+                            
+                            <div class="payment-method">
+                                <input type="radio" name="payment" id="payment-finance">
+                                <label for="payment-finance">
+                                    <div class="method-icon">📄</div>
+                                    <div class="method-name">Financement</div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-details" id="card-details">
+                            <div class="form-group">
+                                <label for="card-name">Titulaire de la carte*</label>
+                                <input type="text" id="card-name" required placeholder="Nom sur la carte">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-number">Numéro de carte*</label>
+                                <input type="text" id="card-number" required placeholder="1234 5678 9012 3456">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-expiry">Date d'expiration*</label>
+                                    <input type="text" id="card-expiry" required placeholder="MM/AA">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvc">Code de sécurité (CVC)*</label>
+                                    <input type="text" id="card-cvc" required placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-details hidden" id="paypal-details">
+                            <p>Vous serez redirigé vers PayPal pour effectuer votre paiement en toute sécurité.</p>
+                        </div>
+                        
+                        <div class="payment-details hidden" id="finance-details">
+                            <div class="finance-options">
+                                <div class="finance-option">
+                                    <input type="radio" name="finance" id="finance-3x" checked>
+                                    <label for="finance-3x">
+                                        <div class="finance-details">
+                                            <div class="finance-name">Paiement en 3 fois</div>
+                                            <div class="finance-price">3 x 830,00 €</div>
+                                            <div class="finance-total">Total: 2 490,00 €</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="finance-option">
+                                    <input type="radio" name="finance" id="finance-6x">
+                                    <label for="finance-6x">
+                                        <div class="finance-details">
+                                            <div class="finance-name">Paiement en 6 fois</div>
+                                            <div class="finance-price">6 x 431,67 €</div>
+                                            <div class="finance-total">Total: 2 590,00 € (TAEG 4.9%)</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="finance-option">
+                                    <input type="radio" name="finance" id="finance-12x">
+                                    <label for="finance-12x">
+                                        <div class="finance-details">
+                                            <div class="finance-name">Paiement en 12 fois</div>
+                                            <div class="finance-price">12 x 225,83 €</div>
+                                            <div class="finance-total">Total: 2 710,00 € (TAEG 6.9%)</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="finance-note">
+                                <p>Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">J'accepte les <a href="#">conditions générales de vente</a> et la <a href="#">politique de confidentialité</a>*</label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-outline prev-step" data-prev="shipping-section">Retour à la livraison</button>
+                            <button class="btn btn-primary" id="place-order">Confirmer la commande</button>
+                        </div>
+                    </section>
+                    
+                    <section class="checkout-section" id="confirmation-section">
+                        <div class="confirmation-content">
+                            <div class="confirmation-icon">✅</div>
+                            <h2>Merci pour votre commande !</h2>
+                            <p>Votre commande a été enregistrée avec succès.</p>
+                            <div class="confirmation-details">
+                                <p>Numéro de commande: <strong>#SC24052789</strong></p>
+                                <p>Un email de confirmation a été envoyé à <strong>votre@email.com</strong></p>
+                            </div>
+                            <div class="order-tracking">
+                                <h3>Suivi de votre commande</h3>
+                                <p>Vous pouvez suivre l'état de votre commande à tout moment en vous connectant à votre compte ou en cliquant sur le lien dans l'email de confirmation.</p>
+                            </div>
+                            <div class="next-steps">
+                                <h3>Prochaines étapes</h3>
+                                <ul>
+                                    <li>Préparation de votre commande (1-2 jours)</li>
+                                    <li>Expédition de votre scooter (vous recevrez un email avec le numéro de suivi)</li>
+                                    <li>Livraison à l'adresse indiquée</li>
+                                </ul>
+                            </div>
+                            <div class="confirmation-actions">
+                                <a href="/" class="btn btn-outline">Retour à l'accueil</a>
+                                <a href="/catalog" class="btn btn-primary">Continuer mes achats</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <div class="checkout-sidebar">
+                    <div class="order-summary">
+                        <h3>Récapitulatif de commande</h3>
+                        
+                        <div class="summary-items" id="summary-items">
+                            <!-- Les articles seront chargés dynamiquement via JavaScript -->
+                            <div class="summary-item">
+                                <div class="item-image">
+                                    <img src="/api/placeholder/60/60" alt="E-Scoot Urban">
+                                </div>
+                                <div class="item-details">
+                                    <h4>E-Scoot Urban</h4>
+                                    <div class="item-variant">Couleur: Noir</div>
+                                    <div class="item-quantity">Qté: 1</div>
+                                </div>
+                                <div class="item-price">2 490,00 €</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-totals">
+                            <div class="summary-row">
+                                <span>Sous-total</span>
+                                <span id="checkout-subtotal">2 490,00 €</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span>Livraison</span>
+                                <span id="checkout-shipping">Gratuit</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span>TVA (20%)</span>
+                                <span id="checkout-tax">498,00 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-total">
+                            <span>Total</span>
+                            <span id="checkout-total">2 490,00 €</span>
+                        </div>
+                    </div>
+                    
+                    <div class="promo-code">
+                        <h4>Code promo</h4>
+                        <div class="promo-input">
+                            <input type="text" placeholder="Entrez votre code promo">
+                            <button class="btn btn-outline">Appliquer</button>
+                        </div>
+                    </div>
+                    
+                    <div class="safe-shopping">
+                        <div class="safe-item">
+                            <div class="safe-icon">🔒</div>
+                            <div class="safe-text">Paiement sécurisé</div>
+                        </div>
+                        <div class="safe-item">
+                            <div class="safe-icon">🚚</div>
+                            <div class="safe-text">Livraison gratuite</div>
+                        </div>
+                        <div class="safe-item">
+                            <div class="safe-icon">↩️</div>
+                            <div class="safe-text">Retours sous 30 jours</div>
+                        </div>
+                        <div class="safe-item">
+                            <div class="safe-icon">🔧</div>
+                            <div class="safe-text">Garantie 2 ans</div>
+                        </div>
+                    </div>
+                    
+                    <div class="need-help">
+                        <h4>Besoin d'aide ?</h4>
+                        <p>Notre service client est disponible du lundi au vendredi de 9h à 18h</p>
+                        <div class="help-contact">
+                            <div><span>📞</span> 01 23 45 67 89</div>
+                            <div><span>✉️</span> contact@scooterx.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="checkout-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ScooterX. Tous droits réservés. | <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a> | <a href="#">CGV</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>

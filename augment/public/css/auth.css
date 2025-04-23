@@ -1,5 +1,12 @@
 /* Auth Page Styles */
 :root {
+    --brand-primary: #1ED760;
+    --brand-secondary: #169C46;
+    --brand-accent: #FFD700;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --background: #FFFFFF;
+    --error: #FF4444;
     --primary: #1ED760;
     --secondary: #0A2540;
     --accent: #36B9CC;
@@ -283,4 +290,29 @@ button.ghost:hover {
 
 .home-link a:hover {
     text-decoration: underline;
+}
+
+.brand h1 {
+    color: var(--brand-primary);
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+}
+
+.btn-primary {
+    background-color: var(--brand-primary);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--brand-secondary);
 }

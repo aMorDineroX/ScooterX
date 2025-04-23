@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Scoot | La révolution des scooters électriques</title>
+    <title>ScooterX | La révolution des scooters électriques</title>
     <style>
         /* Variables et réinitialisation */
         :root {
@@ -131,6 +131,151 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--secondary);
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 5px 0;
+        }
+        
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .login-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .login-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+        }
+        
+        .login-header {
+            margin-bottom: 1rem;
+        }
+        
+        .login-tabs {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .login-tab {
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .login-tab.active {
+            border-color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .login-body {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .login-form {
+            display: none;
+        }
+        
+        .login-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+        }
+        
+        .form-group .form-text {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
+        .password-input {
+            display: flex;
+            align-items: center;
+        }
+        
+        .password-input .toggle-password {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            font-size: 1rem;
+            color: var(--secondary);
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+        
+        .btn-block {
+            width: 100%;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .form-footer a {
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 0.9rem;
         }
         
         /* Hero Section */
@@ -588,20 +733,117 @@
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
-            <a href="#" class="logo">E-<span>Scoot</span></a>
+            <a href="#" class="logo">Scooter<span>X</span></a>
             
-            <button class="mobile-menu-btn">☰</button>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             
             <nav>
-                <ul id="nav-menu">
-                    <li><a href="#features">Avantages</a></li>
-                    <li><a href="#models">Modèles</a></li>
-                    <li><a href="#testimonials">Témoignages</a></li>
-                    <li><a href="#" class="btn btn-outline">Se connecter</a></li>
+                <ul id="nav-menu" class="nav-menu">
+                    <li><a href="#features" class="nav-link">Caractéristiques</a></li>
+                    <li><a href="#models" class="nav-link">Modèles</a></li>
+                    <li><a href="#testimonials" class="nav-link">Témoignages</a></li>
+                    <li><a href="/login" class="btn btn-outline">Se connecter</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <!-- Modal de connexion avec fond flouté -->
+    <div class="login-modal" role="dialog" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="login-container">
+            <button class="login-close" aria-label="Fermer">&times;</button>
+            
+            <div class="login-header">
+                <div class="login-tabs" role="tablist">
+                    <button class="login-tab active" data-tab="login" role="tab" aria-selected="true">
+                        Se connecter
+                    </button>
+                    <button class="login-tab" data-tab="register" role="tab" aria-selected="false">
+                        S'inscrire
+                    </button>
+                </div>
+            </div>
+            
+            <div class="login-body">
+                <form class="login-form active" id="login-form" role="tabpanel">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" class="form-control" required 
+                               aria-describedby="email-help">
+                        <small id="email-help" class="form-text">Nous ne partagerons jamais votre email.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Mot de passe</label>
+                        <div class="password-input">
+                            <input type="password" id="login-password" class="form-control" required>
+                            <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                                👁
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="remember-me" class="form-check-input">
+                        <label for="remember-me" class="form-check-label">Se souvenir de moi</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                    
+                    <div class="form-footer">
+                        <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                    </div>
+                </form>
+                
+                <form class="login-form" id="register-form" role="tabpanel">
+                    <div class="form-group">
+                        <label for="register-name">Nom complet</label>
+                        <input type="text" id="register-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password">Mot de passe</label>
+                        <div class="password-input">
+                            <input type="password" id="register-password" class="form-control" required>
+                            <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                                👁
+                            </button>
+                        </div>
+                        <small class="form-text">Le mot de passe doit contenir au moins 8 caractères.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-confirm">Confirmer le mot de passe</label>
+                        <div class="password-input">
+                            <input type="password" id="register-confirm" class="form-control" required>
+                            <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                                👁
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="terms" class="form-check-input" required>
+                        <label for="terms" class="form-check-label">
+                            J'accepte les <a href="#" target="_blank">conditions d'utilisation</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -615,7 +857,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="/api/placeholder/500/350" alt="Scooter électrique E-Scoot" />
+                <img src="/api/placeholder/500/350" alt="Scooter électrique ScooterX" />
             </div>
         </div>
     </section>
@@ -624,7 +866,7 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
-                <h2>Pourquoi choisir E-Scoot ?</h2>
+                <h2>Pourquoi choisir ScooterX ?</h2>
                 <p>Notre mission est de transformer la mobilité urbaine avec des solutions électriques innovantes, performantes et accessibles.</p>
             </div>
             
@@ -679,10 +921,10 @@
             <div class="model-cards">
                 <div class="model-card">
                     <div class="model-image">
-                        <img src="/api/placeholder/400/220" alt="E-Scoot Urban" />
+                        <img src="/api/placeholder/400/220" alt="ScooterX Urban" />
                     </div>
                     <div class="model-info">
-                        <h3>E-Scoot Urban</h3>
+                        <h3>ScooterX Urban</h3>
                         <div class="price">2.490 €</div>
                         <div class="model-specs">
                             <div class="model-spec">
@@ -707,10 +949,10 @@
                 
                 <div class="model-card">
                     <div class="model-image">
-                        <img src="/api/placeholder/400/220" alt="E-Scoot Pro" />
+                        <img src="/api/placeholder/400/220" alt="ScooterX Pro" />
                     </div>
                     <div class="model-info">
-                        <h3>E-Scoot Pro</h3>
+                        <h3>ScooterX Pro</h3>
                         <div class="price">3.290 €</div>
                         <div class="model-specs">
                             <div class="model-spec">
@@ -735,10 +977,10 @@
                 
                 <div class="model-card">
                     <div class="model-image">
-                        <img src="/api/placeholder/400/220" alt="E-Scoot Max" />
+                        <img src="/api/placeholder/400/220" alt="ScooterX Max" />
                     </div>
                     <div class="model-info">
-                        <h3>E-Scoot Max</h3>
+                        <h3>ScooterX Max</h3>
                         <div class="price">4.590 €</div>
                         <div class="model-specs">
                             <div class="model-spec">
@@ -769,13 +1011,13 @@
         <div class="container">
             <div class="section-title">
                 <h2>Ce que disent nos clients</h2>
-                <p>Découvrez l'expérience de nos utilisateurs qui ont déjà adopté la mobilité électrique avec E-Scoot.</p>
+                <p>Découvrez l'expérience de nos utilisateurs qui ont déjà adopté la mobilité électrique avec ScooterX.</p>
             </div>
             
             <div class="testimonial-cards">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        <p>"Mon E-Scoot Urban a complètement transformé mes trajets quotidiens. Fini les embouteillages, le stress de trouver une place et les frais d'essence. C'est économique, écologique et tellement pratique !"</p>
+                        <p>"Mon ScooterX Urban a complètement transformé mes trajets quotidiens. Fini les embouteillages, le stress de trouver une place et les frais d'essence. C'est économique, écologique et tellement pratique !"</p>
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">
@@ -790,7 +1032,7 @@
                 
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        <p>"En tant que livreur indépendant, le E-Scoot Pro est mon meilleur investissement. Silencieux, rapide et avec une autonomie qui me permet de travailler toute la journée. Et le plus important : zéro frais d'essence !"</p>
+                        <p>"En tant que livreur indépendant, le ScooterX Pro est mon meilleur investissement. Silencieux, rapide et avec une autonomie qui me permet de travailler toute la journée. Et le plus important : zéro frais d'essence !"</p>
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">
@@ -805,7 +1047,7 @@
                 
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        <p>"J'hésitais à passer à l'électrique, mais après l'essai gratuit proposé par E-Scoot, j'ai été conquis. Le service client est impeccable et le SAV réactif. Je recommande vivement !"</p>
+                        <p>"J'hésitais à passer à l'électrique, mais après l'essai gratuit proposé par ScooterX, j'ai été conquis. Le service client est impeccable et le SAV réactif. Je recommande vivement !"</p>
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">
@@ -835,8 +1077,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <a href="#" class="footer-logo">E-Scoot</a>
-                    <p>E-Scoot révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <a href="#" class="footer-logo">ScooterX</a>
+                    <p>ScooterX révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
                     <div class="social-links">
                         <a href="#"><span>f</span></a>
                         <a href="#"><span>in</span></a>
@@ -848,9 +1090,9 @@
                 <div class="footer-links">
                     <h3>Produits</h3>
                     <ul>
-                        <li><a href="#">E-Scoot Urban</a></li>
-                        <li><a href="#">E-Scoot Pro</a></li>
-                        <li><a href="#">E-Scoot Max</a></li>
+                        <li><a href="#">ScooterX Urban</a></li>
+                        <li><a href="#">ScooterX Pro</a></li>
+                        <li><a href="#">ScooterX Max</a></li>
                         <li><a href="#">Accessoires</a></li>
                         <li><a href="#">Pièces détachées</a></li>
                     </ul>
@@ -871,13 +1113,13 @@
                     <h3>Contact</h3>
                     <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
                     <p><span>📞</span> 01 23 45 67 89</p>
-                    <p><span>✉️</span> contact@e-scoot.com</p>
+                    <p><span>✉️</span> contact@scooterx.com</p>
                     <p><span>🕒</span> Lun-Ven : 9h-18h</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 E-Scoot. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
+                <p>&copy; 2025 ScooterX. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
             </div>
         </div>
     </footer>
@@ -886,4 +1128,100 @@
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
-            if (window.scrollY > 
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.feature-card, .model-card, .testimonial-card, .section-title');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenHeight = window.innerHeight;
+                
+                if (elementPosition < screenHeight * 0.85) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Add initial styles for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.feature-card, .model-card, .testimonial-card, .section-title');
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Trigger animation for elements in initial viewport
+            animateOnScroll();
+        });
+        
+        // Trigger animation on scroll
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Login modal functionality
+        const loginModal = document.querySelector('.login-modal');
+        const loginBtn = document.querySelector('.login-btn');
+        const loginClose = document.querySelector('.login-close');
+        const loginTabs = document.querySelectorAll('.login-tab');
+        const loginForms = document.querySelectorAll('.login-form');
+
+        loginBtn.addEventListener('click', function() {
+            loginModal.style.display = 'flex';
+        });
+
+        loginClose.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+
+        loginTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                loginTabs.forEach(t => t.classList.remove('active'));
+                loginForms.forEach(form => form.classList.remove('active'));
+
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab + '-form').classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier | ScooterX</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container nav-container">
+            <a href="/" class="logo">Scooter<span>X</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/catalog">Catalogue</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/cart" class="cart-link active">Panier <span class="cart-count" id="cart-count">0</span></a></li>
+                    <li><a href="/login" class="btn btn-outline">Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Votre Panier</h1>
+                <p>Vérifiez vos articles avant de procéder au paiement</p>
+            </div>
+            
+            <div class="cart-container" id="cart-container">
+                <div class="cart-empty hidden" id="cart-empty">
+                    <div class="empty-cart-icon">🛒</div>
+                    <h2>Votre panier est vide</h2>
+                    <p>Vous n'avez pas encore ajouté d'articles à votre panier.</p>
+                    <a href="/catalog" class="btn btn-primary">Explorer notre catalogue</a>
+                </div>
+                
+                <div class="cart-content" id="cart-content">
+                    <div class="cart-items" id="cart-items">
+                        <!-- Les articles seront chargés dynamiquement via JavaScript -->
+                        <div class="loading">Chargement de votre panier...</div>
+                    </div>
+                    
+                    <div class="cart-sidebar">
+                        <div class="cart-summary">
+                            <h3>Récapitulatif</h3>
+                            
+                            <div class="summary-row">
+                                <span>Sous-total</span>
+                                <span id="subtotal">0,00 €</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span>Frais de livraison</span>
+                                <span id="shipping">Gratuit</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span>TVA (20%)</span>
+                                <span id="tax">0,00 €</span>
+                            </div>
+                            
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span id="total">0,00 €</span>
+                            </div>
+                            
+                            <button class="btn btn-primary btn-block" id="checkout-btn">Procéder au paiement</button>
+                            
+                            <div class="secure-checkout">
+                                <span class="secure-icon">🔒</span>
+                                <span>Paiement sécurisé</span>
+                            </div>
+                            
+                            <div class="payment-methods">
+                                <span>💳</span>
+                                <span>💳</span>
+                                <span>💳</span>
+                                <span>💳</span>
+                            </div>
+                        </div>
+                        
+                        <div class="promo-code">
+                            <h3>Code promo</h3>
+                            <div class="promo-input">
+                                <input type="text" placeholder="Entrez votre code promo">
+                                <button class="btn btn-outline">Appliquer</button>
+                            </div>
+                        </div>
+                        
+                        <div class="help-box">
+                            <h3>Besoin d'aide ?</h3>
+                            <p>Notre équipe est disponible pour vous aider du lundi au vendredi de 9h à 18h</p>
+                            <div class="help-contact">
+                                <div>
+                                    <span class="help-icon">📞</span>
+                                    <span>01 23 45 67 89</span>
+                                </div>
+                                <div>
+                                    <span class="help-icon">✉️</span>
+                                    <span>contact@scooterx.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="continue-shopping">
+                <a href="/catalog" class="btn btn-outline">
+                    <span>←</span> Continuer vos achats
+                </a>
+            </div>
+            
+            <section class="you-may-like">
+                <h2>Vous pourriez aussi aimer</h2>
+                <div class="products-grid" id="recommended-products">
+                    <!-- Produits recommandés chargés dynamiquement -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">ScooterX</a>
+                    <p>ScooterX révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>tw</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Produits</h3>
+                    <ul>
+                        <li><a href="#">E-Scoot Urban</a></li>
+                        <li><a href="#">E-Scoot Pro</a></li>
+                        <li><a href="#">E-Scoot Max</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Nos engagements</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
+                    <p><span>📞</span> 01 23 45 67 89</p>
+                    <p><span>✉️</span> contact@scooterx.com</p>
+                    <p><span>🕒</span> Lun-Ven : 9h-18h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ScooterX. Tous droits réservés. | <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <template id="cart-item-template">
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="" alt="">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title"></h3>
+                <div class="item-variant">Couleur: <span class="item-color"></span></div>
+                <div class="item-price"></div>
+                <div class="item-actions">
+                    <button class="btn-remove">Supprimer</button>
+                    <button class="btn-save-for-later">Sauvegarder pour plus tard</button>
+                </div>
+            </div>
+            <div class="item-quantity">
+                <button class="qty-btn minus">-</button>
+                <input type="number" value="1" min="1" max="10">
+                <button class="qty-btn plus">+</button>
+            </div>
+            <div class="item-total"></div>
+        </div>
+    </template>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

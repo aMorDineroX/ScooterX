@@ -1,5 +1,9 @@
 /* Variables et réinitialisation */
 :root {
+    --primary-color: #2ecc71;
+    --secondary-color: #27ae60;
+    --text-color: #2c3e50;
+    --background-color: #f9f9f9;
     --primary: #1ED760;
     --secondary: #0A2540;
     --accent: #36B9CC;
@@ -25,6 +29,28 @@ body {
     line-height: 1.6;
 }
 
+/* Logo et marque */
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+/* Styles spécifiques à la marque */
+.brand-heading {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.brand-heading span {
+    color: var(--primary-color);
+}
 
 .container {
     width: 90%;

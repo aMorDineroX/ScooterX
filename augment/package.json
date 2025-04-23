@@ -1,7 +1,7 @@
 {
-  "name": "scooterx",
+  "name": "scooterx-augment",
   "version": "1.0.0",
-  "description": "Application pour site web de scooters électriques",
+  "description": "Version augmentée de l'application ScooterX",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

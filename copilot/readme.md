@@ -1,8 +1,20 @@
-# 🛵 E-Scoot - Application de Vente de Scooters Électriques
+# ScooterX - Version de démonstration
+
+Version de démonstration de l'application ScooterX développée avec l'aide de GitHub Copilot.
+
+## Fonctionnalités de base
+
+- Catalogue de produits
+- Panier d'achat
+- Processus de commande
+- Authentification utilisateur
+- Programme de fidélité
+
+# 🛵 ScooterX - Application de Vente de Scooters Électriques
 
 ## 📋 Présentation
 
-E-Scoot est une plateforme web moderne dédiée à la vente de scooters électriques. Notre application permet aux utilisateurs de parcourir notre catalogue, comparer les différents modèles, et réaliser leurs achats en ligne de manière simple et sécurisée.
+ScooterX est une plateforme web moderne dédiée à la vente de scooters électriques. Notre application permet aux utilisateurs de parcourir notre catalogue, comparer les différents modèles, et réaliser leurs achats en ligne de manière simple et sécurisée.
 
 ## ✨ Fonctionnalités
 

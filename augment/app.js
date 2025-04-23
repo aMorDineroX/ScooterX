@@ -8,8 +8,22 @@ const fs = require('fs');
 
 console.log('Modules chargés avec succès');
 
+// Configuration de l'application
+const config = {
+    appName: 'ScooterX',
+    port: process.env.PORT || 3000,
+};
+
 // Initialiser l'application express
 const app = express();
+
+// Configuration des vues
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Variables globales pour les vues
+app.locals.siteName = 'ScooterX';
+app.locals.siteDescription = 'La révolution des scooters électriques';
 
 // Configurer les middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,10 +36,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 3600000 } // 1 heure
 }));
-
-// Configurer EJS comme moteur de template
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
 // Servir les fichiers statiques
 app.use(express.static(path.join(__dirname, 'public')));
@@ -103,7 +113,7 @@ const users = [
 const scooters = [
   {
     id: 1,
-    name: 'E-Scoot Urban',
+    name: 'ScooterX Urban',
     category: 'urban',
     price: 2490,
     oldPrice: null,
@@ -114,7 +124,7 @@ const scooters = [
     weight: 75,
     chargeTime: '4-5 heures',
     dimensions: '180 x 70 x 115 cm',
-    description: 'Le E-Scoot Urban est parfait pour vos déplacements quotidiens en ville. Compact, léger et maniable, il vous permettra de vous faufiler dans la circulation tout en respectant l\'environnement.',
+    description: 'Le ScooterX Urban est parfait pour vos déplacements quotidiens en ville. Compact, léger et maniable, il vous permettra de vous faufiler dans la circulation tout en respectant l\'environnement.',
     image: 'scooter-urban.jpg',
     image2: 'scooter-urban-2.jpg',
     image3: 'scooter-urban-3.jpg',
@@ -136,7 +146,7 @@ const scooters = [
         avatar: 'avatar-1.jpg',
         rating: 5,
         title: 'Parfait pour la ville !',
-        comment: 'J\'utilise mon E-Scoot Urban tous les jours pour aller au travail et je suis ravie. Plus de problèmes de stationnement ou d\'embouteillages !',
+        comment: 'J\'utilise mon ScooterX Urban tous les jours pour aller au travail et je suis ravie. Plus de problèmes de stationnement ou d\'embouteillages !',
         date: '15 mars 2025',
         response: null,
         responseDate: null
@@ -148,14 +158,14 @@ const scooters = [
         title: 'Très bon rapport qualité-prix',
         comment: 'Excellent scooter pour le prix. L\'autonomie est suffisante pour mes trajets quotidiens et la puissance est au rendez-vous.',
         date: '2 février 2025',
-        response: 'Merci pour votre retour Thomas ! Nous sommes ravis que votre E-Scoot Urban vous donne satisfaction.',
+        response: 'Merci pour votre retour Thomas ! Nous sommes ravis que votre ScooterX Urban vous donne satisfaction.',
         responseDate: '5 février 2025'
       }
     ]
   },
   {
     id: 2,
-    name: 'E-Scoot Pro',
+    name: 'ScooterX Pro',
     category: 'sport',
     price: 3290,
     oldPrice: 3590,
@@ -166,7 +176,7 @@ const scooters = [
     weight: 85,
     chargeTime: '5-6 heures',
     dimensions: '185 x 75 x 120 cm',
-    description: 'Le E-Scoot Pro est conçu pour ceux qui recherchent plus de puissance et d\'autonomie. Idéal pour les trajets plus longs et les routes plus exigeantes.',
+    description: 'Le ScooterX Pro est conçu pour ceux qui recherchent plus de puissance et d\'autonomie. Idéal pour les trajets plus longs et les routes plus exigeantes.',
     image: 'scooter-pro.jpg',
     image2: 'scooter-pro-2.jpg',
     image3: 'scooter-pro-3.jpg',
@@ -196,8 +206,8 @@ const scooters = [
   },
   {
     id: 3,
-    name: 'E-Scoot Max',
-    category: 'sport',
+    name: 'ScooterX Max',
+    category: 'premium',
     price: 4590,
     oldPrice: null,
     discount: null,
@@ -207,7 +217,7 @@ const scooters = [
     weight: 95,
     chargeTime: '6-7 heures',
     dimensions: '190 x 80 x 125 cm',
-    description: 'Le E-Scoot Max est notre modèle haut de gamme, offrant des performances exceptionnelles. Sa puissance et son autonomie en font le choix idéal pour les utilisateurs exigeants.',
+    description: 'Le ScooterX Max est notre modèle haut de gamme, offrant des performances exceptionnelles. Sa puissance et son autonomie en font le choix idéal pour les utilisateurs exigeants.',
     image: 'scooter-max.jpg',
     image2: 'scooter-max-2.jpg',
     image3: 'scooter-max-3.jpg',
@@ -228,9 +238,9 @@ const scooters = [
         avatar: 'avatar-4.jpg',
         rating: 5,
         title: 'Le meilleur scooter électrique du marché',
-        comment: 'J\'ai essayé plusieurs modèles avant d\'acheter le E-Scoot Max et je ne regrette pas mon choix. La puissance, l\'autonomie et la qualité de fabrication sont exceptionnelles.',
+        comment: 'J\'ai essayé plusieurs modèles avant d\'acheter le ScooterX Max et je ne regrette pas mon choix. La puissance, l\'autonomie et la qualité de fabrication sont exceptionnelles.',
         date: '10 décembre 2024',
-        response: 'Merci Marc pour ce retour enthousiaste ! Nous sommes ravis que le E-Scoot Max réponde à vos attentes.',
+        response: 'Merci Marc pour ce retour enthousiaste ! Nous sommes ravis que le ScooterX Max réponde à vos attentes.',
         responseDate: '12 décembre 2024'
       }
     ]
@@ -562,7 +572,7 @@ app.get('/logout', (req, res) => {
 });
 
 // Démarrer le serveur sur un port disponible
-const SERVER_PORT = process.env.PORT || 3000;
+const SERVER_PORT = config.port;
 
 // Fonction pour démarrer le serveur sur un port disponible
 function startServer(port) {

@@ -1,242 +1,240 @@
 <%- include('partials/header', { 
-    title: 'Scooters électriques innovants', 
-    description: 'ScooterX - La révolution des scooters électriques. Découvrez nos modèles innovants, performants et respectueux de l\'environnement.',
-    keywords: 'scooter électrique, mobilité urbaine, transport écologique, ScooterX, Urban, Pro, Max',
-    currentUrl: '/',
-    bodyClass: 'home-page',
-    cssFiles: ['styles.css']
+    title: 'Accueil', 
+    description: 'ScooterX - La révolution des scooters électriques' 
 }) %>
 
 <%- include('partials/navigation', { activePage: 'home' }) %>
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>La révolution des scooters électriques</h1>
-                <p>Découvrez nos scooters électriques innovants, performants et respectueux de l'environnement. La mobilité urbaine n'a jamais été aussi agréable.</p>
-                <div class="hero-buttons">
-                    <a href="/search" class="btn btn-primary">Découvrir nos modèles</a>
-                    <a href="#features" class="btn btn-outline">En savoir plus</a>
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Découvrez la révolution<br>ScooterX</h1>
+                    <p>Découvrez nos scooters électriques innovants, performants et respectueux de l'environnement. La mobilité urbaine n'a jamais été aussi agréable.</p>
+                    <div class="hero-buttons">
+                        <a href="/search" class="btn btn-primary">Découvrir nos modèles</a>
+                        <a href="#features" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="/images/scooter.jpg" alt="ScooterX Electric Scooter">
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="/images/scooter.jpg" alt="ScooterX Electric Scooter">
-            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Features Section -->
-<section class="features" id="features">
-    <div class="container">
-        <div class="section-title">
-            <h2>Pourquoi choisir ScooterX ?</h2>
-            <p>Nos scooters électriques combinent technologie de pointe, design élégant et respect de l'environnement pour une expérience de conduite inégalée.</p>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pourquoi choisir ScooterX ?</h2>
+                <p>Nos scooters électriques combinent technologie de pointe, design élégant et respect de l'environnement pour une expérience de conduite inégalée.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3>Autonomie exceptionnelle</h3>
+                    <p>Nos batteries lithium-ion de dernière génération offrent jusqu'à 150 km d'autonomie pour vos trajets quotidiens.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Recharge rapide</h3>
+                    <p>Rechargez votre scooter en un temps record grâce à notre technologie de charge rapide.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Éco-responsable</h3>
+                    <p>Zéro émission et matériaux recyclables pour une mobilité urbaine respectueuse de l'environnement.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Application connectée</h3>
+                    <p>Contrôlez votre scooter à distance, suivez vos trajets et recevez des notifications via notre application mobile.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Sécurité avancée</h3>
+                    <p>Système de verrouillage électronique et alarme intégrée pour protéger votre scooter en toutes circonstances.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Économique</h3>
+                    <p>Réduisez considérablement vos dépenses de transport par rapport à une voiture ou un scooter thermique.</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🔋</div>
-                <h3>Autonomie exceptionnelle</h3>
-                <p>Nos batteries lithium-ion de dernière génération offrent jusqu'à 150 km d'autonomie pour vos trajets quotidiens.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Recharge rapide</h3>
-                <p>Rechargez votre scooter en un temps record grâce à notre technologie de charge rapide.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🌱</div>
-                <h3>Éco-responsable</h3>
-                <p>Zéro émission et matériaux recyclables pour une mobilité urbaine respectueuse de l'environnement.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3>Application connectée</h3>
-                <p>Contrôlez votre scooter à distance, suivez vos trajets et recevez des notifications via notre application mobile.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Sécurité avancée</h3>
-                <p>Système de verrouillage électronique et alarme intégrée pour protéger votre scooter en toutes circonstances.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Économique</h3>
-                <p>Réduisez considérablement vos dépenses de transport par rapport à une voiture ou un scooter thermique.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- Models Section -->
-<section class="models" id="models">
-    <div class="container">
-        <div class="section-title">
-            <h2>Nos modèles</h2>
-            <p>Découvrez notre gamme de scooters électriques conçus pour répondre à tous vos besoins de mobilité urbaine.</p>
-        </div>
-        
-        <div class="model-cards">
-            <div class="model-card">
-                <div class="model-image">
-                    <img src="/images/scooter-urban.jpg" alt="ScooterX Urban">
-                </div>
-                <div class="model-info">
-                    <h3>ScooterX Urban</h3>
-                    <div class="price">2.490 €</div>
-                    <div class="model-specs">
-                        <div class="model-spec">
-                            <i>⚡</i> 3000W
-                        </div>
-                        <div class="model-spec">
-                            <i>🔋</i> 70km
-                        </div>
-                        <div class="model-spec">
-                            <i>⏱️</i> 45km/h
-                        </div>
-                        <div class="model-spec">
-                            <i>⚖️</i> 75kg
-                        </div>
-                    </div>
-                    <div class="model-actions">
-                        <a href="/scooter/1" class="btn btn-outline">Détails</a>
-                        <a href="/reservation/1" class="btn btn-primary">Réserver</a>
-                    </div>
-                </div>
+    <!-- Models Section -->
+    <section class="models" id="models">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos modèles</h2>
+                <p>Découvrez notre gamme de scooters électriques conçus pour répondre à tous vos besoins de mobilité urbaine.</p>
             </div>
             
-            <div class="model-card">
-                <div class="model-image">
-                    <img src="/images/scooter-pro.jpg" alt="ScooterX Pro">
-                </div>
-                <div class="model-info">
-                    <h3>ScooterX Pro</h3>
-                    <div class="price">3.290 €</div>
-                    <div class="model-specs">
-                        <div class="model-spec">
-                            <i>⚡</i> 5000W
+            <div class="model-cards">
+                <div class="model-card">
+                    <div class="model-image">
+                        <img src="/images/scooter-urban.jpg" alt="ScooterX Urban">
+                    </div>
+                    <div class="model-info">
+                        <h3>ScooterX Urban</h3>
+                        <div class="price">2.490 €</div>
+                        <div class="model-specs">
+                            <div class="model-spec">
+                                <i>⚡</i> 3000W
+                            </div>
+                            <div class="model-spec">
+                                <i>🔋</i> 70km
+                            </div>
+                            <div class="model-spec">
+                                <i>⏱️</i> 45km/h
+                            </div>
+                            <div class="model-spec">
+                                <i>⚖️</i> 75kg
+                            </div>
                         </div>
-                        <div class="model-spec">
-                            <i>🔋</i> 100km
-                        </div>
-                        <div class="model-spec">
-                            <i>⏱️</i> 65km/h
-                        </div>
-                        <div class="model-spec">
-                            <i>⚖️</i> 85kg
+                        <div class="model-actions">
+                            <a href="/scooter/1" class="btn btn-outline">Détails</a>
+                            <a href="/reservation/1" class="btn btn-primary">Réserver</a>
                         </div>
                     </div>
-                    <div class="model-actions">
-                        <a href="/scooter/2" class="btn btn-outline">Détails</a>
-                        <a href="/reservation/2" class="btn btn-primary">Réserver</a>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-image">
+                        <img src="/images/scooter-pro.jpg" alt="ScooterX Pro">
+                    </div>
+                    <div class="model-info">
+                        <h3>ScooterX Pro</h3>
+                        <div class="price">3.290 €</div>
+                        <div class="model-specs">
+                            <div class="model-spec">
+                                <i>⚡</i> 5000W
+                            </div>
+                            <div class="model-spec">
+                                <i>🔋</i> 100km
+                            </div>
+                            <div class="model-spec">
+                                <i>⏱️</i> 65km/h
+                            </div>
+                            <div class="model-spec">
+                                <i>⚖️</i> 85kg
+                            </div>
+                        </div>
+                        <div class="model-actions">
+                            <a href="/scooter/2" class="btn btn-outline">Détails</a>
+                            <a href="/reservation/2" class="btn btn-primary">Réserver</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="model-card">
-                <div class="model-image">
-                    <img src="/images/scooter-max.jpg" alt="ScooterX Max">
-                </div>
-                <div class="model-info">
-                    <h3>ScooterX Max</h3>
-                    <div class="price">4.590 €</div>
-                    <div class="model-specs">
-                        <div class="model-spec">
-                            <i>⚡</i> 8000W
-                        </div>
-                        <div class="model-spec">
-                            <i>🔋</i> 150km
-                        </div>
-                        <div class="model-spec">
-                            <i>⏱️</i> 90km/h
-                        </div>
-                        <div class="model-spec">
-                            <i>⚖️</i> 95kg
-                        </div>
+                
+                <div class="model-card">
+                    <div class="model-image">
+                        <img src="/images/scooter-max.jpg" alt="ScooterX Max">
                     </div>
-                    <div class="model-actions">
-                        <a href="/scooter/3" class="btn btn-outline">Détails</a>
-                        <a href="/reservation/3" class="btn btn-primary">Réserver</a>
+                    <div class="model-info">
+                        <h3>ScooterX Max</h3>
+                        <div class="price">4.590 €</div>
+                        <div class="model-specs">
+                            <div class="model-spec">
+                                <i>⚡</i> 8000W
+                            </div>
+                            <div class="model-spec">
+                                <i>🔋</i> 150km
+                            </div>
+                            <div class="model-spec">
+                                <i>⏱️</i> 90km/h
+                            </div>
+                            <div class="model-spec">
+                                <i>⚖️</i> 95kg
+                            </div>
+                        </div>
+                        <div class="model-actions">
+                            <a href="/scooter/3" class="btn btn-outline">Détails</a>
+                            <a href="/reservation/3" class="btn btn-primary">Réserver</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Testimonials Section -->
-<section class="testimonials" id="testimonials">
-    <div class="container">
-        <div class="section-title">
-            <h2>Ce que disent nos clients</h2>
-            <p>Découvrez les témoignages de nos clients satisfaits qui ont adopté la mobilité électrique avec ScooterX.</p>
-        </div>
-        
-        <div class="testimonial-cards">
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    <p>"J'utilise mon ScooterX Urban tous les jours pour aller au travail et je suis ravie. Plus de problèmes de stationnement ou d'embouteillages ! L'autonomie est largement suffisante pour mes trajets quotidiens."</p>
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">
-                        <img src="/images/avatar-1.jpg" alt="Sophie M.">
-                    </div>
-                    <div class="author-info">
-                        <h4>Sophie M.</h4>
-                        <p>Utilisatrice du ScooterX Urban</p>
-                    </div>
-                </div>
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ce que disent nos clients</h2>
+                <p>Découvrez les témoignages de nos clients satisfaits qui ont adopté la mobilité électrique avec ScooterX.</p>
             </div>
             
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    <p>"La puissance du ScooterX Pro est impressionnante et l'autonomie me permet de faire l'aller-retour au travail pendant toute la semaine sans recharger. Un investissement qui vaut vraiment le coup !"</p>
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">
-                        <img src="/images/avatar-2.jpg" alt="Thomas L.">
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"J'utilise mon ScooterX Urban tous les jours pour aller au travail et je suis ravie. Plus de problèmes de stationnement ou d'embouteillages ! L'autonomie est largement suffisante pour mes trajets quotidiens."</p>
                     </div>
-                    <div class="author-info">
-                        <h4>Thomas L.</h4>
-                        <p>Utilisateur du ScooterX Pro</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/images/avatar-1.jpg" alt="Sophie M.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sophie M.</h4>
+                            <p>Utilisatrice du ScooterX Urban</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    <p>"J'ai essayé plusieurs modèles avant d'acheter le ScooterX Max et je ne regrette pas mon choix. La puissance, l'autonomie et la qualité de fabrication sont exceptionnelles. C'est un vrai plaisir à conduire !"</p>
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">
-                        <img src="/images/avatar-3.jpg" alt="Marc D.">
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"La puissance du ScooterX Pro est impressionnante et l'autonomie me permet de faire l'aller-retour au travail pendant toute la semaine sans recharger. Un investissement qui vaut vraiment le coup !"</p>
                     </div>
-                    <div class="author-info">
-                        <h4>Marc D.</h4>
-                        <p>Utilisateur du ScooterX Max</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/images/avatar-2.jpg" alt="Thomas L.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Thomas L.</h4>
+                            <p>Utilisateur du ScooterX Pro</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"J'ai essayé plusieurs modèles avant d'acheter le ScooterX Max et je ne regrette pas mon choix. La puissance, l'autonomie et la qualité de fabrication sont exceptionnelles. C'est un vrai plaisir à conduire !"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/images/avatar-3.jpg" alt="Marc D.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Marc D.</h4>
+                            <p>Utilisateur du ScooterX Max</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- CTA Section -->
-<section class="cta">
-    <div class="container">
-        <h2>Prêt à rejoindre la révolution électrique ?</h2>
-        <p>Découvrez dès maintenant nos scooters électriques et transformez vos déplacements quotidiens.</p>
-        <a href="/search" class="btn btn-outline">Voir tous nos modèles</a>
-    </div>
-</section>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Prêt à rejoindre la révolution électrique ?</h2>
+            <p>Découvrez dès maintenant nos scooters électriques et transformez vos déplacements quotidiens.</p>
+            <a href="/search" class="btn btn-outline">Voir tous nos modèles</a>
+        </div>
+    </section>
+</main>
 
 <%- include('partials/footer') %>
 

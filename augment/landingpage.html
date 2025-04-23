@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Scoot | La révolution des scooters électriques</title>
+    <title>ScooterX - Votre Partenaire de Mobilité Urbaine</title>
     <style>
         /* Variables et réinitialisation */
         :root {
@@ -59,17 +59,21 @@
             align-items: center;
         }
         
-        .logo {
+        .brand {
             display: flex;
             align-items: center;
+        }
+        
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+        }
+        
+        .brand-name {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--secondary);
         }
         
         nav ul {
@@ -437,12 +441,16 @@
             margin-bottom: 3rem;
         }
         
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
         .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
+            width: 50px;
+            height: auto;
             margin-bottom: 1rem;
-            display: inline-block;
         }
         
         .footer-about p {
@@ -588,7 +596,10 @@
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
-            <a href="#" class="logo">E-<span>Scoot</span></a>
+            <div class="brand">
+                <img src="images/logo.png" alt="ScooterX Logo" class="logo">
+                <span class="brand-name">ScooterX</span>
+            </div>
             
             <button class="mobile-menu-btn">☰</button>
             
@@ -607,7 +618,7 @@
     <section class="hero">
         <div class="container hero-content">
             <div class="hero-text">
-                <h1>La révolution de la mobilité urbaine est électrique</h1>
+                <h1>Bienvenue chez ScooterX</h1>
                 <p>Découvrez notre gamme de scooters électriques alliant performance, design et respect de l'environnement pour une mobilité urbaine sans compromis.</p>
                 <div class="hero-buttons">
                     <a href="#models" class="btn btn-primary">Découvrir nos modèles</a>
@@ -615,7 +626,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="/api/placeholder/500/350" alt="Scooter électrique E-Scoot" />
+                <img src="/api/placeholder/500/350" alt="Scooter électrique ScooterX" />
             </div>
         </div>
     </section>
@@ -624,7 +635,7 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
-                <h2>Pourquoi choisir E-Scoot ?</h2>
+                <h2>Pourquoi choisir ScooterX ?</h2>
                 <p>Notre mission est de transformer la mobilité urbaine avec des solutions électriques innovantes, performantes et accessibles.</p>
             </div>
             
@@ -679,10 +690,10 @@
             <div class="model-cards">
                 <div class="model-card">
                     <div class="model-image">
-                        <img src="/api/placeholder/400/220" alt="E-Scoot Urban" />
+                        <img src="/api/placeholder/400/220" alt="ScooterX Urban" />
                     </div>
                     <div class="model-info">
-                        <h3>E-Scoot Urban</h3>
+                        <h3>ScooterX Urban</h3>
                         <div class="price">2.490 €</div>
                         <div class="model-specs">
                             <div class="model-spec">
@@ -707,10 +718,10 @@
                 
                 <div class="model-card">
                     <div class="model-image">
-                        <img src="/api/placeholder/400/220" alt="E-Scoot Pro" />
+                        <img src="/api/placeholder/400/220" alt="ScooterX Pro" />
                     </div>
                     <div class="model-info">
-                        <h3>E-Scoot Pro</h3>
+                        <h3>ScooterX Pro</h3>
                         <div class="price">3.290 €</div>
                         <div class="model-specs">
                             <div class="model-spec">
@@ -735,10 +746,10 @@
                 
                 <div class="model-card">
                     <div class="model-image">
-                        <img src="/api/placeholder/400/220" alt="E-Scoot Max" />
+                        <img src="/api/placeholder/400/220" alt="ScooterX Max" />
                     </div>
                     <div class="model-info">
-                        <h3>E-Scoot Max</h3>
+                        <h3>ScooterX Max</h3>
                         <div class="price">4.590 €</div>
                         <div class="model-specs">
                             <div class="model-spec">
@@ -769,13 +780,13 @@
         <div class="container">
             <div class="section-title">
                 <h2>Ce que disent nos clients</h2>
-                <p>Découvrez l'expérience de nos utilisateurs qui ont déjà adopté la mobilité électrique avec E-Scoot.</p>
+                <p>Découvrez l'expérience de nos utilisateurs qui ont déjà adopté la mobilité électrique avec ScooterX.</p>
             </div>
             
             <div class="testimonial-cards">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        <p>"Mon E-Scoot Urban a complètement transformé mes trajets quotidiens. Fini les embouteillages, le stress de trouver une place et les frais d'essence. C'est économique, écologique et tellement pratique !"</p>
+                        <p>"Mon ScooterX Urban a complètement transformé mes trajets quotidiens. Fini les embouteillages, le stress de trouver une place et les frais d'essence. C'est économique, écologique et tellement pratique !"</p>
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">
@@ -790,7 +801,7 @@
                 
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        <p>"En tant que livreur indépendant, le E-Scoot Pro est mon meilleur investissement. Silencieux, rapide et avec une autonomie qui me permet de travailler toute la journée. Et le plus important : zéro frais d'essence !"</p>
+                        <p>"En tant que livreur indépendant, le ScooterX Pro est mon meilleur investissement. Silencieux, rapide et avec une autonomie qui me permet de travailler toute la journée. Et le plus important : zéro frais d'essence !"</p>
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">
@@ -805,7 +816,7 @@
                 
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        <p>"J'hésitais à passer à l'électrique, mais après l'essai gratuit proposé par E-Scoot, j'ai été conquis. Le service client est impeccable et le SAV réactif. Je recommande vivement !"</p>
+                        <p>"J'hésitais à passer à l'électrique, mais après l'essai gratuit proposé par ScooterX, j'ai été conquis. Le service client est impeccable et le SAV réactif. Je recommande vivement !"</p>
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">
@@ -834,23 +845,17 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-about">
-                    <a href="#" class="footer-logo">E-Scoot</a>
-                    <p>E-Scoot révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
-                    <div class="social-links">
-                        <a href="#"><span>f</span></a>
-                        <a href="#"><span>in</span></a>
-                        <a href="#"><span>ig</span></a>
-                        <a href="#"><span>tw</span></a>
-                    </div>
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="ScooterX Logo" class="footer-logo">
+                    <p>ScooterX - La mobilité urbaine réinventée</p>
                 </div>
                 
                 <div class="footer-links">
                     <h3>Produits</h3>
                     <ul>
-                        <li><a href="#">E-Scoot Urban</a></li>
-                        <li><a href="#">E-Scoot Pro</a></li>
-                        <li><a href="#">E-Scoot Max</a></li>
+                        <li><a href="#">ScooterX Urban</a></li>
+                        <li><a href="#">ScooterX Pro</a></li>
+                        <li><a href="#">ScooterX Max</a></li>
                         <li><a href="#">Accessoires</a></li>
                         <li><a href="#">Pièces détachées</a></li>
                     </ul>
@@ -871,13 +876,13 @@
                     <h3>Contact</h3>
                     <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
                     <p><span>📞</span> 01 23 45 67 89</p>
-                    <p><span>✉️</span> contact@e-scoot.com</p>
+                    <p><span>✉️</span> contact@scooterx.com</p>
                     <p><span>🕒</span> Lun-Ven : 9h-18h</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 E-Scoot. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
+                <p>&copy; 2025 ScooterX. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
             </div>
         </div>
     </footer>
@@ -886,4 +891,20 @@
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
-            if (window.scrollY > 
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

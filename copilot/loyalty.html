@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme de Fidélité - ScooterX</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header id="header">
+        <!-- ... existing header code ... -->
+    </header>
+
+    <main>
+        <section class="loyalty-hero">
+            <div class="container">
+                <h1>Programme de Fidélité ScooterX</h1>
+                <p class="lead">Cumulez des points et débloquez des avantages exclusifs</p>
+            </div>
+        </section>
+
+        <section class="loyalty-tiers">
+            <div class="container">
+                <h2>Niveaux de fidélité</h2>
+                <div class="tier-cards">
+                    <div class="tier-card bronze">
+                        <div class="tier-header">
+                            <h3>Bronze</h3>
+                            <span class="points">0 - 999 points</span>
+                        </div>
+                        <div class="tier-benefits">
+                            <ul>
+                                <li>Accès aux offres spéciales</li>
+                                <li>Newsletter exclusive</li>
+                                <li>Badge bronze sur le profil</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tier-card silver">
+                        <div class="tier-header">
+                            <h3>Argent</h3>
+                            <span class="points">1 000 - 4 999 points</span>
+                        </div>
+                        <div class="tier-benefits">
+                            <ul>
+                                <li>Tous les avantages Bronze</li>
+                                <li>5% de réduction sur les achats</li>
+                                <li>Priorité sur la réservation d'essais</li>
+                                <li>Support prioritaire</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tier-card gold">
+                        <div class="tier-header">
+                            <h3>Or</h3>
+                            <span class="points">5 000 - 9 999 points</span>
+                        </div>
+                        <div class="tier-benefits">
+                            <ul>
+                                <li>Tous les avantages Argent</li>
+                                <li>10% de réduction sur les achats</li>
+                                <li>Maintenance prioritaire</li>
+                                <li>Invitations aux événements VIP</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tier-card platinum">
+                        <div class="tier-header">
+                            <h3>Platine</h3>
+                            <span class="points">10 000+ points</span>
+                        </div>
+                        <div class="tier-benefits">
+                            <ul>
+                                <li>Tous les avantages Or</li>
+                                <li>15% de réduction sur les achats</li>
+                                <li>Concierge dédié</li>
+                                <li>Garantie étendue gratuite</li>
+                                <li>Essais illimités</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="earn-points">
+            <div class="container">
+                <h2>Comment gagner des points</h2>
+                <div class="points-grid">
+                    <div class="points-card">
+                        <div class="points-icon">🛒</div>
+                        <h3>Achats</h3>
+                        <p>100 points par euro dépensé</p>
+                    </div>
+
+                    <div class="points-card">
+                        <div class="points-icon">📅</div>
+                        <h3>Location</h3>
+                        <p>50 points par jour de location</p>
+                    </div>
+
+                    <div class="points-card">
+                        <div class="points-icon">⭐</div>
+                        <h3>Avis</h3>
+                        <p>200 points par avis vérifié</p>
+                    </div>
+
+                    <div class="points-card">
+                        <div class="points-icon">👥</div>
+                        <h3>Parrainage</h3>
+                        <p>1000 points par ami parrainé</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="rewards">
+            <div class="container">
+                <h2>Récompenses disponibles</h2>
+                <div class="rewards-grid" id="rewards-container">
+                    <!-- Les récompenses seront chargées dynamiquement -->
+                </div>
+            </div>
+        </section>
+
+        <section class="your-status" id="status-section">
+            <div class="container">
+                <h2>Votre statut</h2>
+                <div class="status-container">
+                    <div class="status-info">
+                        <div class="current-tier">
+                            <h3>Niveau actuel</h3>
+                            <span class="tier-badge" id="current-tier">Chargement...</span>
+                        </div>
+                        <div class="points-info">
+                            <h3>Points</h3>
+                            <span class="points-badge" id="current-points">Chargement...</span>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress" id="tier-progress"></div>
+                        </div>
+                        <p>Plus que <span id="points-needed">X</span> points pour atteindre le niveau suivant</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- ... existing footer code ... -->
+    </footer>
+
+    <script>
+        // Charger les récompenses disponibles
+        const rewards = [
+            { id: 1, name: 'Location gratuite 24h', cost: 5000, icon: '🛵' },
+            { id: 2, name: 'Accessoire au choix', cost: 3000, icon: '🎁' },
+            { id: 3, name: 'Maintenance gratuite', cost: 2000, icon: '🔧' }
+        ];
+
+        const rewardsContainer = document.getElementById('rewards-container');
+        rewardsContainer.innerHTML = rewards.map(reward => `
+            <div class="reward-card">
+                <div class="reward-icon">${reward.icon}</div>
+                <h3>${reward.name}</h3>
+                <p>${reward.cost} points</p>
+                <button class="btn btn-primary" onclick="claimReward(${reward.id})">
+                    Échanger
+                </button>
+            </div>
+        `).join('');
+
+        // Charger le statut de l'utilisateur
+        fetch('/api/loyalty/status')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('current-tier').textContent = data.tier;
+                document.getElementById('current-points').textContent = `${data.points} points`;
+                
+                const progress = calculateProgress(data.points);
+                document.getElementById('tier-progress').style.width = `${progress}%`;
+                
+                const nextTier = getNextTier(data.tier);
+                if (nextTier) {
+                    const pointsNeeded = nextTier.min - data.points;
+                    document.getElementById('points-needed').textContent = pointsNeeded;
+                }
+            });
+
+        function calculateProgress(points) {
+            // Calculer le pourcentage de progression vers le niveau suivant
+            const tiers = {
+                bronze: { min: 0, max: 999 },
+                silver: { min: 1000, max: 4999 },
+                gold: { min: 5000, max: 9999 },
+                platinum: { min: 10000, max: 10000 }
+            };
+
+            for (const [tier, range] of Object.entries(tiers)) {
+                if (points >= range.min && points <= range.max) {
+                    return ((points - range.min) / (range.max - range.min)) * 100;
+                }
+            }
+            return 100;
+        }
+
+        function getNextTier(currentTier) {
+            const tiers = {
+                bronze: { min: 1000, name: 'Argent' },
+                silver: { min: 5000, name: 'Or' },
+                gold: { min: 10000, name: 'Platine' }
+            };
+            return tiers[currentTier.toLowerCase()];
+        }
+
+        function claimReward(rewardId) {
+            fetch('/api/loyalty/claim-reward', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ rewardId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Récompense réclamée avec succès !');
+                    // Recharger le statut
+                    location.reload();
+                } else {
+                    alert(data.message || 'Une erreur est survenue');
+                }
+            });
+        }
+    </script>
+
+    <style>
+        .loyalty-hero {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .loyalty-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .loyalty-hero .lead {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .tier-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .tier-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .tier-header {
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .tier-card.bronze .tier-header { background: #CD7F32; }
+        .tier-card.silver .tier-header { background: #C0C0C0; }
+        .tier-card.gold .tier-header { background: #FFD700; }
+        .tier-card.platinum .tier-header { background: #E5E4E2; }
+
+        .tier-benefits {
+            padding: 2rem;
+        }
+
+        .tier-benefits ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tier-benefits li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .tier-benefits li:last-child {
+            border-bottom: none;
+        }
+
+        .points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .points-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .points-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .reward-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .reward-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .status-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .progress-container {
+            margin-top: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .tier-badge[data-tier="bronze"] { background: #CD7F32; }
+        .tier-badge[data-tier="silver"] { background: #C0C0C0; }
+        .tier-badge[data-tier="gold"] { background: #FFD700; }
+        .tier-badge[data-tier="platinum"] { background: #E5E4E2; }
+
+        .points-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .tier-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .points-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rewards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

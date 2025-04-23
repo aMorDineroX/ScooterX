@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScooterX - Détails du Scooter</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container nav-container">
+            <a href="/" class="logo">Scooter<span>X</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/catalog">Catalogue</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/cart" class="cart-link">Panier <span class="cart-count" id="cart-count">0</span></a></li>
+                    <li><a href="/login" class="btn btn-outline">Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Accueil</a> &gt; 
+                <a href="/catalog">Catalogue</a> &gt; 
+                <span id="product-breadcrumb">Détails du produit</span>
+            </div>
+            
+            <div class="product-details" id="product-details">
+                <div class="loading">Chargement des détails du scooter...</div>
+            </div>
+            
+            <div class="product-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="description">Description</button>
+                    <button class="tab-btn" data-tab="specifications">Spécifications</button>
+                    <button class="tab-btn" data-tab="reviews">Avis (12)</button>
+                </div>
+                
+                <div class="tab-content active" id="description">
+                    <div id="product-description">
+                        <!-- Description chargée dynamiquement -->
+                    </div>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔋</div>
+                            <h3>Autonomie exceptionnelle</h3>
+                            <p>Nos batteries lithium-ion de dernière génération vous offrent une autonomie optimale pour vos déplacements quotidiens.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Recharge rapide</h3>
+                            <p>Rechargez rapidement votre batterie grâce à notre technologie de charge rapide.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🌱</div>
+                            <h3>Éco-responsable</h3>
+                            <p>Zéro émission, matériaux recyclés et une empreinte carbone réduite pour une mobilité véritablement durable.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="specifications">
+                    <div id="product-specifications">
+                        <!-- Spécifications chargées dynamiquement -->
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="reviews">
+                    <div class="reviews-container">
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="review-user">
+                                    <img src="/api/placeholder/50/50" alt="Sophie M." />
+                                    <div>
+                                        <h4>Sophie M.</h4>
+                                        <div class="rating">★★★★★</div>
+                                    </div>
+                                </div>
+                                <div class="review-date">Il y a 2 mois</div>
+                            </div>
+                            <p>Super scooter! Je l'utilise quotidiennement depuis 2 mois pour me rendre au travail (15km aller-retour) et je n'ai jamais eu besoin de le recharger plus d'une fois par semaine. Le confort de conduite est excellent.</p>
+                        </div>
+                        
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="review-user">
+                                    <img src="/api/placeholder/50/50" alt="Thomas L." />
+                                    <div>
+                                        <h4>Thomas L.</h4>
+                                        <div class="rating">★★★★☆</div>
+                                    </div>
+                                </div>
+                                <div class="review-date">Il y a 3 semaines</div>
+                            </div>
+                            <p>Très bonne puissance et autonomie. Le seul bémol est la prise en main qui demande un peu d'adaptation, mais une fois maîtrisé, c'est un plaisir à conduire. Le service client est très réactif.</p>
+                        </div>
+                        
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="review-user">
+                                    <img src="/api/placeholder/50/50" alt="Julie R." />
+                                    <div>
+                                        <h4>Julie R.</h4>
+                                        <div class="rating">★★★★★</div>
+                                    </div>
+                                </div>
+                                <div class="review-date">Il y a 1 semaine</div>
+                            </div>
+                            <p>Design élégant et performances au rendez-vous! Je suis ravie de mon achat, c'est exactement ce que je recherchais pour mes déplacements en ville. En plus, je reçois beaucoup de compliments sur son look!</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-outline load-more">Voir plus d'avis</button>
+                </div>
+            </div>
+            
+            <section class="related-products">
+                <h2>Vous pourriez aussi aimer</h2>
+                <div class="products-grid related-grid" id="related-products">
+                    <!-- Produits similaires chargés dynamiquement -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">ScooterX</a>
+                    <p>ScooterX révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>tw</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Produits</h3>
+                    <ul>
+                        <li><a href="#">E-Scoot Urban</a></li>
+                        <li><a href="#">E-Scoot Pro</a></li>
+                        <li><a href="#">E-Scoot Max</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Nos engagements</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
+                    <p><span>📞</span> 01 23 45 67 89</p>
+                    <p><span>✉️</span> contact@scooterx.com</p>
+                    <p><span>🕒</span> Lun-Ven : 9h-18h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ScooterX. Tous droits réservés. | <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <template id="product-template">
+        <div class="product-gallery">
+            <div class="main-image">
+                <img src="" alt="" id="main-product-image">
+            </div>
+            <div class="thumbnail-images" id="thumbnail-container">
+                <!-- Thumbnails chargées dynamiquement -->
+            </div>
+        </div>
+        <div class="product-info">
+            <h1 class="product-title"></h1>
+            <div class="product-price"></div>
+            <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">(36 avis)</span>
+            </div>
+            <div class="product-short-desc"></div>
+            
+            <div class="product-specs-highlights">
+                <div class="spec-highlight">
+                    <span class="spec-icon">⚡</span>
+                    <span class="spec-value power-value"></span>
+                    <span class="spec-name">Puissance</span>
+                </div>
+                <div class="spec-highlight">
+                    <span class="spec-icon">🔋</span>
+                    <span class="spec-value range-value"></span>
+                    <span class="spec-name">Autonomie</span>
+                </div>
+                <div class="spec-highlight">
+                    <span class="spec-icon">⏱️</span>
+                    <span class="spec-value speed-value"></span>
+                    <span class="spec-name">Vitesse max</span>
+                </div>
+                <div class="spec-highlight">
+                    <span class="spec-icon">⚖️</span>
+                    <span class="spec-value weight-value"></span>
+                    <span class="spec-name">Poids</span>
+                </div>
+            </div>
+            
+            <div class="product-colors">
+                <h3>Couleurs disponibles</h3>
+                <div class="color-options" id="color-options">
+                    <!-- Options de couleurs chargées dynamiquement -->
+                </div>
+            </div>
+            
+            <div class="product-actions">
+                <div class="quantity-selector">
+                    <button class="qty-btn minus">-</button>
+                    <input type="number" value="1" min="1" max="10" id="quantity">
+                    <button class="qty-btn plus">+</button>
+                </div>
+                
+                <button class="btn btn-primary add-to-cart" id="add-to-cart">
+                    <span class="cart-icon">🛒</span>
+                    Ajouter au panier
+                </button>
+            </div>
+            
+            <div class="product-meta">
+                <div class="delivery-info">
+                    <span class="meta-icon">🚚</span>
+                    <span>Livraison gratuite sous 3-5 jours</span>
+                </div>
+                <div class="warranty-info">
+                    <span class="meta-icon">🔒</span>
+                    <span>Garantie 2 ans incluse</span>
+                </div>
+                <div class="return-info">
+                    <span class="meta-icon">↩️</span>
+                    <span>Retour gratuit sous 30 jours</span>
+                </div>
+            </div>
+            
+            <div class="financing">
+                <h3>Options de financement</h3>
+                <p>À partir de <strong>69€/mois</strong> sur 36 mois</p>
+                <button class="btn btn-outline" id="show-financing">Simuler un financement</button>
+            </div>
+            
+            <div class="test-drive">
+                <h3>Essayez avant d'acheter</h3>
+                <p>Réservez un essai dans un point de vente près de chez vous</p>
+                <button class="btn btn-outline" id="book-test-drive">Réserver un essai</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/main.js"></script>
+    <script src="js/product.js"></script>
+</body>
+</html>

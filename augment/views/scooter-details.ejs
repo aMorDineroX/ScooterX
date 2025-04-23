@@ -8,33 +8,20 @@
     <link rel="stylesheet" href="/css/scooter-details.css">
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container nav-container">
-            <a href="/" class="logo">E-<span>Scoot</span></a>
-            
-            <button class="mobile-menu-btn">☰</button>
-            
-            <nav>
-                <ul id="nav-menu">
-                    <li><a href="/#features">Avantages</a></li>
-                    <li><a href="/#models">Modèles</a></li>
-                    <li><a href="/#testimonials">Témoignages</a></li>
-                    <% if (locals.user) { %>
-                        <li><a href="/dashboard">Tableau de bord</a></li>
-                        <li><a href="/logout" class="btn btn-outline">Déconnexion</a></li>
-                    <% } else { %>
-                        <li><a href="/login" class="btn btn-outline">Se connecter</a></li>
-                    <% } %>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <%- include('partials/header', { 
+        title: scooter.name, 
+        description: `Découvrez le ${scooter.name} - ${scooter.description}` 
+    }) %>
 
-    <!-- Scooter Details Section -->
-    <section class="scooter-details">
+    <main class="scooter-details">
         <div class="container">
-            <div class="scooter-details-content">
+            <nav class="breadcrumb">
+                <a href="/">Accueil</a> &gt;
+                <a href="/search">Scooters</a> &gt;
+                <span><%= scooter.name %></span>
+            </nav>
+
+            <div class="scooter-content">
                 <div class="scooter-gallery">
                     <div class="main-image">
                         <img src="/images/<%= scooter.image %>" alt="<%= scooter.name %>" id="main-scooter-image">
@@ -133,7 +120,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Features Section -->
     <section class="scooter-features">

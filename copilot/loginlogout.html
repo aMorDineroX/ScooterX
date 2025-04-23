@@ -3,278 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Sign Up</title>
+    <title>Connexion | ScooterX</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            height: 100vh;
+        .auth-container {
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            padding: 2rem;
         }
-        
-        .container {
-            background-color: white;
+
+        .auth-box {
+            background: white;
             border-radius: 10px;
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            position: relative;
-            overflow: hidden;
-            width: 768px;
-            max-width: 100%;
-            min-height: 480px;
-        }
-        
-        .form-container {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            transition: all 0.6s ease-in-out;
-        }
-        
-        .sign-in-container {
-            left: 0;
-            width: 50%;
-            z-index: 2;
-        }
-        
-        .container.right-panel-active .sign-in-container {
-            transform: translateX(100%);
-        }
-        
-        .sign-up-container {
-            left: 0;
-            width: 50%;
-            opacity: 0;
-            z-index: 1;
-        }
-        
-        .container.right-panel-active .sign-up-container {
-            transform: translateX(100%);
-            opacity: 1;
-            z-index: 5;
-        }
-        
-        form {
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 0 50px;
-            height: 100%;
-            text-align: center;
-        }
-        
-        h1 {
-            font-weight: bold;
-            margin: 0;
-            margin-bottom: 15px;
-        }
-        
-        p {
-            font-size: 14px;
-            font-weight: 100;
-            line-height: 20px;
-            letter-spacing: 0.5px;
-            margin: 20px 0 30px;
-        }
-        
-        input {
-            background-color: #eee;
-            border: none;
-            padding: 12px 15px;
-            margin: 8px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
-            border-radius: 5px;
+            max-width: 500px;
+            padding: 2rem;
         }
-        
-        button {
-            border-radius: 20px;
-            border: 1px solid #764ba2;
-            background-color: #764ba2;
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 12px 45px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: transform 80ms ease-in;
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-header .logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .auth-header h1 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-header p {
+            color: var(--gray);
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--light);
+            margin-bottom: 2rem;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            color: var(--gray);
             cursor: pointer;
-        }
-        
-        button:active {
-            transform: scale(0.95);
-        }
-        
-        button.ghost {
-            background-color: transparent;
-            border-color: white;
-        }
-        
-        .overlay-container {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            transition: transform 0.6s ease-in-out;
-            z-index: 100;
-        }
-        
-        .container.right-panel-active .overlay-container {
-            transform: translateX(-100%);
-        }
-        
-        .overlay {
-            background: linear-gradient(to right, #667eea, #764ba2);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: 0 0;
-            color: white;
+            transition: all 0.3s ease;
             position: relative;
-            left: -100%;
-            height: 100%;
-            width: 200%;
-            transform: translateX(0);
-            transition: transform 0.6s ease-in-out;
         }
-        
-        .container.right-panel-active .overlay {
-            transform: translateX(50%);
-        }
-        
-        .overlay-panel {
+
+        .auth-tab::after {
+            content: '';
             position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .auth-tab.active::after {
+            transform: scaleX(1);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .social-login {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-button {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            padding: 0 40px;
-            text-align: center;
-            top: 0;
-            height: 100%;
-            width: 50%;
-            transform: translateX(0);
-            transition: transform 0.6s ease-in-out;
+            padding: 0.8rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 5px;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
-        
-        .overlay-left {
-            transform: translateX(-20%);
+
+        .social-button:hover {
+            background-color: var(--light);
         }
-        
-        .container.right-panel-active .overlay-left {
-            transform: translateX(0);
+
+        .social-button img {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.5rem;
         }
-        
-        .overlay-right {
-            right: 0;
-            transform: translateX(0);
-        }
-        
-        .container.right-panel-active .overlay-right {
-            transform: translateX(20%);
-        }
-        
-        .social-container {
-            margin: 20px 0;
-        }
-        
-        .social-container a {
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            display: inline-flex;
-            justify-content: center;
+
+        .divider {
+            display: flex;
             align-items: center;
-            margin: 0 5px;
-            height: 40px;
-            width: 40px;
-            text-decoration: none;
-            color: #333;
+            margin: 2rem 0;
+            color: var(--gray);
         }
-        
-        .form-footer {
-            margin-top: 15px;
-            font-size: 13px;
-            color: #777;
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: var(--gray-light);
         }
-        
-        .form-footer a {
-            color: #764ba2;
+
+        .divider span {
+            padding: 0 1rem;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .message-success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+
+        .message-error {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--secondary);
             text-decoration: none;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: var(--primary);
+        }
+
+        .back-to-home span {
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 576px) {
+            .auth-box {
+                padding: 1.5rem;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form action="#">
-                <h1>Créer un compte</h1>
-                <div class="social-container">
-                    <a href="#"><i>f</i></a>
-                    <a href="#"><i>g</i></a>
-                    <a href="#"><i>in</i></a>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <a href="/" class="logo">E-<span>Scoot</span></a>
+                <h1>Bienvenue</h1>
+                <p>Connectez-vous pour accéder à votre compte</p>
+            </div>
+
+            <div class="auth-tabs" role="tablist">
+                <div class="auth-tab active" data-tab="login" role="tab">Se connecter</div>
+                <div class="auth-tab" data-tab="register" role="tab">S'inscrire</div>
+            </div>
+
+            <form id="login-form" class="auth-form active" role="tabpanel">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" class="form-control" required>
                 </div>
-                <p>ou utilisez votre email pour vous inscrire</p>
-                <input type="text" placeholder="Nom" required />
-                <input type="email" placeholder="Email" required />
-                <input type="password" placeholder="Mot de passe" required />
-                <button type="submit">S'inscrire</button>
+
+                <div class="form-group">
+                    <label for="login-password">Mot de passe</label>
+                    <div class="password-input">
+                        <input type="password" id="login-password" class="form-control" required>
+                        <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">👁</button>
+                    </div>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="remember-me" class="form-check-input">
+                    <label for="remember-me" class="form-check-label">Se souvenir de moi</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+
                 <div class="form-footer">
-                    En vous inscrivant, vous acceptez nos <a href="#">Conditions d'utilisation</a> et notre <a href="#">Politique de confidentialité</a>
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
                 </div>
             </form>
-        </div>
-        <div class="form-container sign-in-container">
-            <form action="#">
-                <h1>Se connecter</h1>
-                <div class="social-container">
-                    <a href="#"><i>f</i></a>
-                    <a href="#"><i>g</i></a>
-                    <a href="#"><i>in</i></a>
+
+            <form id="register-form" class="auth-form" role="tabpanel">
+                <div class="form-group">
+                    <label for="register-name">Nom complet</label>
+                    <input type="text" id="register-name" class="form-control" required>
                 </div>
-                <p>ou utilisez votre compte</p>
-                <input type="email" placeholder="Email" required />
-                <input type="password" placeholder="Mot de passe" required />
-                <a href="#" style="margin: 15px 0; text-decoration: none; color: #764ba2; font-size: 14px;">Mot de passe oublié?</a>
-                <button type="submit">Se connecter</button>
+
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="register-password">Mot de passe</label>
+                    <div class="password-input">
+                        <input type="password" id="register-password" class="form-control" required>
+                        <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">👁</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="register-confirm">Confirmer le mot de passe</label>
+                    <div class="password-input">
+                        <input type="password" id="register-confirm" class="form-control" required>
+                        <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">👁</button>
+                    </div>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="terms" class="form-check-input" required>
+                    <label for="terms" class="form-check-label">
+                        J'accepte les <a href="#" target="_blank">conditions d'utilisation</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
             </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Bon retour!</h1>
-                    <p>Pour rester connecté avec nous, veuillez vous connecter avec vos informations personnelles</p>
-                    <button class="ghost" id="signIn">Se connecter</button>
+
+            <div class="divider">
+                <span>ou</span>
+            </div>
+
+            <div class="social-login">
+                <div class="social-buttons">
+                    <a href="#" class="social-button">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
+                        Google
+                    </a>
+                    <a href="#" class="social-button">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook">
+                        Facebook
+                    </a>
                 </div>
-                <div class="overlay-panel overlay-right">
-                    <h1>Bonjour!</h1>
-                    <p>Entrez vos données personnelles et commencez votre voyage avec nous</p>
-                    <button class="ghost" id="signUp">S'inscrire</button>
-                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="/" class="back-to-home">
+                    <span>←</span> Retour à l'accueil
+                </a>
             </div>
         </div>
     </div>
 
-    <script>
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
-
-        signUpButton.addEventListener('click', () => {
-            container.classList.add('right-panel-active');
-        });
-
-        signInButton.addEventListener('click', () => {
-            container.classList.remove('right-panel-active');
-        });
-    </script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

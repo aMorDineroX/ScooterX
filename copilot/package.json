@@ -1,0 +1,17 @@
+{
+  "name": "scooterx-copilot",
+  "version": "1.0.0",
+  "description": "Version de démonstration de l'application ScooterX avec GitHub Copilot",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "serve": "nodemon --watch . app.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

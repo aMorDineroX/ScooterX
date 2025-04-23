@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue | ScooterX</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container nav-container">
+            <a href="/" class="logo">Scooter<span>X</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/catalog" class="active">Catalogue</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/cart" class="cart-link">Panier <span class="cart-count" id="cart-count">0</span></a></li>
+                    <li><a href="/login" class="btn btn-outline">Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="catalog-hero">
+            <div class="container">
+                <h1>Trouvez le scooter électrique qui vous correspond</h1>
+                <p>Découvrez notre gamme complète de scooters électriques performants, éco-responsables et au design élégant</p>
+            </div>
+        </section>
+        
+        <section class="catalog-filters">
+            <div class="container">
+                <div class="filter-container">
+                    <div class="filter-group">
+                        <label for="price-range">Prix</label>
+                        <select id="price-range">
+                            <option value="all">Tous les prix</option>
+                            <option value="0-2500">0 - 2500 €</option>
+                            <option value="2500-3500">2500 - 3500 €</option>
+                            <option value="3500+">3500 € et plus</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="range-filter">Autonomie</label>
+                        <select id="range-filter">
+                            <option value="all">Toutes les autonomies</option>
+                            <option value="0-80">0 - 80 km</option>
+                            <option value="80-120">80 - 120 km</option>
+                            <option value="120+">120 km et plus</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="speed-filter">Vitesse</label>
+                        <select id="speed-filter">
+                            <option value="all">Toutes les vitesses</option>
+                            <option value="0-50">0 - 50 km/h</option>
+                            <option value="50-80">50 - 80 km/h</option>
+                            <option value="80+">80 km/h et plus</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sort-by">Trier par</label>
+                        <select id="sort-by">
+                            <option value="popular">Popularité</option>
+                            <option value="price-asc">Prix croissant</option>
+                            <option value="price-desc">Prix décroissant</option>
+                            <option value="range-desc">Autonomie</option>
+                            <option value="speed-desc">Vitesse</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="catalog-products">
+            <div class="container">
+                <div class="products-grid" id="products-grid">
+                    <!-- Les produits seront chargés dynamiquement via JavaScript -->
+                    <div class="loading">Chargement des scooters...</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="newsletter">
+            <div class="container">
+                <h2>Restez informé</h2>
+                <p>Abonnez-vous à notre newsletter pour recevoir nos dernières actualités et offres exclusives</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Votre adresse email" required>
+                    <button type="submit" class="btn btn-primary">S'abonner</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">ScooterX</a>
+                    <p>ScooterX révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>tw</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Produits</h3>
+                    <ul>
+                        <li><a href="#">E-Scoot Urban</a></li>
+                        <li><a href="#">E-Scoot Pro</a></li>
+                        <li><a href="#">E-Scoot Max</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Nos engagements</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
+                    <p><span>📞</span> 01 23 45 67 89</p>
+                    <p><span>✉️</span> contact@scooterx.com</p>
+                    <p><span>🕒</span> Lun-Ven : 9h-18h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ScooterX. Tous droits réservés. | <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/catalog.js"></script>
+</body>
+</html>
