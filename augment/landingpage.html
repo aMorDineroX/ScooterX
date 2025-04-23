@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Scoot | La révolution des scooters électriques</title>
+    <style>
+        /* Variables et réinitialisation */
+        :root {
+            --primary: #1ED760;
+            --secondary: #0A2540;
+            --accent: #36B9CC;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --gradient: linear-gradient(135deg, #1ED760, #0A2540);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Header et Navigation */
+        header {
+            background-color: transparent;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+            padding: 1rem 0;
+        }
+        
+        header.scrolled {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background-color: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: white;
+            clip-path: polygon(0 100%, 100% 100%, 100% 0);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Models Section */
+        .models {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .model-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .model-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .model-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .model-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .model-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .model-card:hover .model-image img {
+            transform: scale(1.1);
+        }
+        
+        .model-info {
+            padding: 1.5rem;
+        }
+        
+        .model-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .model-info .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .model-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .model-spec {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .model-spec i {
+            margin-right: 0.3rem;
+            color: var(--primary);
+        }
+        
+        .model-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-contact p i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                margin-bottom: 2rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.8rem 2rem;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">E-<span>Scoot</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#features">Avantages</a></li>
+                    <li><a href="#models">Modèles</a></li>
+                    <li><a href="#testimonials">Témoignages</a></li>
+                    <li><a href="#" class="btn btn-outline">Se connecter</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>La révolution de la mobilité urbaine est électrique</h1>
+                <p>Découvrez notre gamme de scooters électriques alliant performance, design et respect de l'environnement pour une mobilité urbaine sans compromis.</p>
+                <div class="hero-buttons">
+                    <a href="#models" class="btn btn-primary">Découvrir nos modèles</a>
+                    <a href="#" class="btn btn-outline">Réserver un essai</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/500/350" alt="Scooter électrique E-Scoot" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pourquoi choisir E-Scoot ?</h2>
+                <p>Notre mission est de transformer la mobilité urbaine avec des solutions électriques innovantes, performantes et accessibles.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3>Autonomie exceptionnelle</h3>
+                    <p>Nos batteries lithium-ion de dernière génération vous offrent jusqu'à 150km d'autonomie pour vos déplacements quotidiens.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Recharge rapide</h3>
+                    <p>Rechargez jusqu'à 80% de votre batterie en seulement 2 heures grâce à notre technologie de charge rapide.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Éco-responsable</h3>
+                    <p>Zéro émission, matériaux recyclés et une empreinte carbone réduite pour une mobilité véritablement durable.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Économique</h3>
+                    <p>Réduisez vos coûts de transport jusqu'à 70% par rapport à un scooter thermique traditionnel.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Entretien minimal</h3>
+                    <p>Moins de pièces d'usure, pas de vidange d'huile, maintenance réduite pour une tranquillité d'esprit totale.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Application connectée</h3>
+                    <p>Suivez l'état de votre scooter, localisez-le et déverrouillez-le à distance avec notre application mobile intuitive.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section class="models" id="models">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos modèles</h2>
+                <p>Trouvez le scooter électrique qui correspond parfaitement à vos besoins et à votre style de vie.</p>
+            </div>
+            
+            <div class="model-cards">
+                <div class="model-card">
+                    <div class="model-image">
+                        <img src="/api/placeholder/400/220" alt="E-Scoot Urban" />
+                    </div>
+                    <div class="model-info">
+                        <h3>E-Scoot Urban</h3>
+                        <div class="price">2.490 €</div>
+                        <div class="model-specs">
+                            <div class="model-spec">
+                                <span>⚡ 3000W</span>
+                            </div>
+                            <div class="model-spec">
+                                <span>🔋 70km</span>
+                            </div>
+                            <div class="model-spec">
+                                <span>⏱️ 45km/h</span>
+                            </div>
+                            <div class="model-spec">
+                                <span>⚖️ 75kg</span>
+                            </div>
+                        </div>
+                        <div class="model-actions">
+                            <a href="#" class="btn btn-outline">Détails</a>
+                            <a href="#" class="btn btn-primary">Commander</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-image">
+                        <img src="/api/placeholder/400/220" alt="E-Scoot Pro" />
+                    </div>
+                    <div class="model-info">
+                        <h3>E-Scoot Pro</h3>
+                        <div class="price">3.290 €</div>
+                        <div class="model-specs">
+                            <div class="model-spec">
+                                <span>⚡ 5000W</span>
+                            </div>
+                            <div class="model-spec">
+                                <span>🔋 100km</span>
+                            </div>
+                            <div class="model-spec">
+                                <span>⏱️ 65km/h</span>
+                            </div>
+                            <div class="model-spec">
+                                <span>⚖️ 85kg</span>
+                            </div>
+                        </div>
+                        <div class="model-actions">
+                            <a href="#" class="btn btn-outline">Détails</a>
+                            <a href="#" class="btn btn-primary">Commander</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-image">
+                        <img src="/api/placeholder/400/220" alt="E-Scoot Max" />
+                    </div>
+                    <div class="model-info">
+                        <h3>E-Scoot Max</h3>
+                        <div class="price">4.590 €</div>
+                        <div class="model-specs">
+                            <div class="model-spec">
+                                <span>⚡ 8000W</span>
+                            </div>
+                            <div class="model-spec">
+                                <span>🔋 150km</span>
+                            </div>
+                            <div class="model-spec">
+                                <span>⏱️ 90km/h</span>
+                            </div>
+                            <div class="model-spec">
+                                <span>⚖️ 95kg</span>
+                            </div>
+                        </div>
+                        <div class="model-actions">
+                            <a href="#" class="btn btn-outline">Détails</a>
+                            <a href="#" class="btn btn-primary">Commander</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ce que disent nos clients</h2>
+                <p>Découvrez l'expérience de nos utilisateurs qui ont déjà adopté la mobilité électrique avec E-Scoot.</p>
+            </div>
+            
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"Mon E-Scoot Urban a complètement transformé mes trajets quotidiens. Fini les embouteillages, le stress de trouver une place et les frais d'essence. C'est économique, écologique et tellement pratique !"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/50/50" alt="Sophie M." />
+                        </div>
+                        <div class="author-info">
+                            <h4>Sophie M.</h4>
+                            <p>Utilisatrice depuis 6 mois</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"En tant que livreur indépendant, le E-Scoot Pro est mon meilleur investissement. Silencieux, rapide et avec une autonomie qui me permet de travailler toute la journée. Et le plus important : zéro frais d'essence !"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/50/50" alt="Thomas L." />
+                        </div>
+                        <div class="author-info">
+                            <h4>Thomas L.</h4>
+                            <p>Utilisateur depuis 1 an</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"J'hésitais à passer à l'électrique, mais après l'essai gratuit proposé par E-Scoot, j'ai été conquis. Le service client est impeccable et le SAV réactif. Je recommande vivement !"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/50/50" alt="Julien R." />
+                        </div>
+                        <div class="author-info">
+                            <h4>Julien R.</h4>
+                            <p>Utilisateur depuis 3 mois</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Prêt à électrifier vos déplacements ?</h2>
+            <p>Rejoignez la révolution de la mobilité urbaine et profitez de notre offre de lancement avec 500€ de remise sur toute notre gamme.</p>
+            <a href="#" class="btn btn-outline">Réserver un essai gratuit</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">E-Scoot</a>
+                    <p>E-Scoot révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>tw</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Produits</h3>
+                    <ul>
+                        <li><a href="#">E-Scoot Urban</a></li>
+                        <li><a href="#">E-Scoot Pro</a></li>
+                        <li><a href="#">E-Scoot Max</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Nos engagements</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
+                    <p><span>📞</span> 01 23 45 67 89</p>
+                    <p><span>✉️</span> contact@e-scoot.com</p>
+                    <p><span>🕒</span> Lun-Ven : 9h-18h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 E-Scoot. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 

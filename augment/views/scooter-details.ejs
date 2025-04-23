@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Scoot | Détails du scooter</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/scooter-details.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="/" class="logo">E-<span>Scoot</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="/#features">Avantages</a></li>
+                    <li><a href="/#models">Modèles</a></li>
+                    <li><a href="/#testimonials">Témoignages</a></li>
+                    <% if (locals.user) { %>
+                        <li><a href="/dashboard">Tableau de bord</a></li>
+                        <li><a href="/logout" class="btn btn-outline">Déconnexion</a></li>
+                    <% } else { %>
+                        <li><a href="/login" class="btn btn-outline">Se connecter</a></li>
+                    <% } %>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scooter Details Section -->
+    <section class="scooter-details">
+        <div class="container">
+            <div class="scooter-details-content">
+                <div class="scooter-gallery">
+                    <div class="main-image">
+                        <img src="/images/<%= scooter.image %>" alt="<%= scooter.name %>" id="main-scooter-image">
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="/images/<%= scooter.image %>" alt="<%= scooter.name %>" class="thumbnail active" onclick="changeImage(this.src)">
+                        <img src="/images/<%= scooter.image2 || scooter.image %>" alt="<%= scooter.name %>" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="/images/<%= scooter.image3 || scooter.image %>" alt="<%= scooter.name %>" class="thumbnail" onclick="changeImage(this.src)">
+                        <img src="/images/<%= scooter.image4 || scooter.image %>" alt="<%= scooter.name %>" class="thumbnail" onclick="changeImage(this.src)">
+                    </div>
+                </div>
+                <div class="scooter-info">
+                    <h1><%= scooter.name %></h1>
+                    <div class="price"><%= scooter.price %> €</div>
+                    <div class="rating">
+                        <% for(let i = 0; i < 5; i++) { %>
+                            <% if(i < scooter.rating) { %>
+                                <span class="star filled">★</span>
+                            <% } else { %>
+                                <span class="star">★</span>
+                            <% } %>
+                        <% } %>
+                        <span class="rating-count">(<%= scooter.reviewCount %> avis)</span>
+                    </div>
+                    <div class="description">
+                        <p><%= scooter.description %></p>
+                    </div>
+                    <div class="specs">
+                        <h3>Caractéristiques techniques</h3>
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <div class="spec-icon">⚡</div>
+                                <div class="spec-details">
+                                    <div class="spec-name">Puissance</div>
+                                    <div class="spec-value"><%= scooter.power %></div>
+                                </div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-icon">🔋</div>
+                                <div class="spec-details">
+                                    <div class="spec-name">Autonomie</div>
+                                    <div class="spec-value"><%= scooter.range %> km</div>
+                                </div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-icon">⏱️</div>
+                                <div class="spec-details">
+                                    <div class="spec-name">Vitesse max</div>
+                                    <div class="spec-value"><%= scooter.speed %> km/h</div>
+                                </div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-icon">⚖️</div>
+                                <div class="spec-details">
+                                    <div class="spec-name">Poids</div>
+                                    <div class="spec-value"><%= scooter.weight %> kg</div>
+                                </div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-icon">🔌</div>
+                                <div class="spec-details">
+                                    <div class="spec-name">Temps de charge</div>
+                                    <div class="spec-value"><%= scooter.chargeTime %></div>
+                                </div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-icon">📏</div>
+                                <div class="spec-details">
+                                    <div class="spec-name">Dimensions</div>
+                                    <div class="spec-value"><%= scooter.dimensions %></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="colors">
+                        <h3>Couleurs disponibles</h3>
+                        <div class="color-options">
+                            <% scooter.colors.forEach(color => { %>
+                                <div class="color-option" style="background-color: <%= color.code %>;" title="<%= color.name %>"></div>
+                            <% }); %>
+                        </div>
+                    </div>
+                    <div class="availability">
+                        <h3>Disponibilité</h3>
+                        <p><%= scooter.availability ? 'En stock' : 'Rupture de stock' %></p>
+                        <% if (scooter.availability) { %>
+                            <p class="delivery-info">Livraison estimée : 3-5 jours ouvrables</p>
+                        <% } else { %>
+                            <p class="delivery-info">Prochaine disponibilité : <%= scooter.nextAvailability %></p>
+                        <% } %>
+                    </div>
+                    <div class="actions">
+                        <a href="/reservation/<%= scooter.id %>" class="btn btn-primary">Réserver maintenant</a>
+                        <a href="/test-drive/<%= scooter.id %>" class="btn btn-outline">Essai gratuit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="scooter-features">
+        <div class="container">
+            <h2>Caractéristiques principales</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3>Batterie longue durée</h3>
+                    <p>Batterie lithium-ion de haute qualité offrant une autonomie exceptionnelle pour vos trajets quotidiens.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Sécurité avancée</h3>
+                    <p>Système de verrouillage électronique et alarme intégrée pour protéger votre scooter en toutes circonstances.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Application connectée</h3>
+                    <p>Contrôlez votre scooter à distance, suivez vos trajets et recevez des notifications via notre application mobile.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Éco-responsable</h3>
+                    <p>Zéro émission et matériaux recyclables pour une mobilité urbaine respectueuse de l'environnement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <h2>Avis clients</h2>
+            <div class="reviews-summary">
+                <div class="average-rating">
+                    <div class="rating-number"><%= scooter.rating %>/5</div>
+                    <div class="rating-stars">
+                        <% for(let i = 0; i < 5; i++) { %>
+                            <% if(i < scooter.rating) { %>
+                                <span class="star filled">★</span>
+                            <% } else { %>
+                                <span class="star">★</span>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    <div class="rating-count"><%= scooter.reviewCount %> avis</div>
+                </div>
+                <div class="rating-bars">
+                    <div class="rating-bar">
+                        <div class="rating-label">5 étoiles</div>
+                        <div class="bar-container">
+                            <div class="bar" style="width: <%= scooter.ratingDistribution[4] %>%"></div>
+                        </div>
+                        <div class="rating-percentage"><%= scooter.ratingDistribution[4] %>%</div>
+                    </div>
+                    <div class="rating-bar">
+                        <div class="rating-label">4 étoiles</div>
+                        <div class="bar-container">
+                            <div class="bar" style="width: <%= scooter.ratingDistribution[3] %>%"></div>
+                        </div>
+                        <div class="rating-percentage"><%= scooter.ratingDistribution[3] %>%</div>
+                    </div>
+                    <div class="rating-bar">
+                        <div class="rating-label">3 étoiles</div>
+                        <div class="bar-container">
+                            <div class="bar" style="width: <%= scooter.ratingDistribution[2] %>%"></div>
+                        </div>
+                        <div class="rating-percentage"><%= scooter.ratingDistribution[2] %>%</div>
+                    </div>
+                    <div class="rating-bar">
+                        <div class="rating-label">2 étoiles</div>
+                        <div class="bar-container">
+                            <div class="bar" style="width: <%= scooter.ratingDistribution[1] %>%"></div>
+                        </div>
+                        <div class="rating-percentage"><%= scooter.ratingDistribution[1] %>%</div>
+                    </div>
+                    <div class="rating-bar">
+                        <div class="rating-label">1 étoile</div>
+                        <div class="bar-container">
+                            <div class="bar" style="width: <%= scooter.ratingDistribution[0] %>%"></div>
+                        </div>
+                        <div class="rating-percentage"><%= scooter.ratingDistribution[0] %>%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews-list">
+                <% scooter.reviews.forEach(review => { %>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">
+                                    <img src="/images/<%= review.avatar || 'avatar-default.jpg' %>" alt="<%= review.name %>">
+                                </div>
+                                <div class="reviewer-details">
+                                    <div class="reviewer-name"><%= review.name %></div>
+                                    <div class="review-date"><%= review.date %></div>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <% for(let i = 0; i < 5; i++) { %>
+                                    <% if(i < review.rating) { %>
+                                        <span class="star filled">★</span>
+                                    <% } else { %>
+                                        <span class="star">★</span>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <h4><%= review.title %></h4>
+                            <p><%= review.comment %></p>
+                        </div>
+                        <% if (review.response) { %>
+                            <div class="review-response">
+                                <div class="response-header">
+                                    <div class="response-avatar">
+                                        <img src="/images/logo-small.png" alt="E-Scoot">
+                                    </div>
+                                    <div class="response-details">
+                                        <div class="response-name">Réponse de E-Scoot</div>
+                                        <div class="response-date"><%= review.responseDate %></div>
+                                    </div>
+                                </div>
+                                <div class="response-content">
+                                    <p><%= review.response %></p>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                <% }); %>
+            </div>
+            <div class="reviews-pagination">
+                <button class="pagination-btn prev">Précédent</button>
+                <div class="pagination-numbers">
+                    <span class="page-number active">1</span>
+                    <span class="page-number">2</span>
+                    <span class="page-number">3</span>
+                    <span class="page-number">...</span>
+                    <span class="page-number">10</span>
+                </div>
+                <button class="pagination-btn next">Suivant</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="related-products">
+        <div class="container">
+            <h2>Produits similaires</h2>
+            <div class="model-cards">
+                <% relatedScooters.forEach(scooter => { %>
+                    <div class="model-card">
+                        <div class="model-image">
+                            <img src="/images/<%= scooter.image %>" alt="<%= scooter.name %>" />
+                        </div>
+                        <div class="model-info">
+                            <h3><%= scooter.name %></h3>
+                            <div class="price"><%= scooter.price %> €</div>
+                            <div class="model-specs">
+                                <div class="model-spec">
+                                    <span>⚡ <%= scooter.power %></span>
+                                </div>
+                                <div class="model-spec">
+                                    <span>🔋 <%= scooter.range %> km</span>
+                                </div>
+                                <div class="model-spec">
+                                    <span>⏱️ <%= scooter.speed %> km/h</span>
+                                </div>
+                                <div class="model-spec">
+                                    <span>⚖️ <%= scooter.weight %> kg</span>
+                                </div>
+                            </div>
+                            <div class="model-actions">
+                                <a href="/scooter/<%= scooter.id %>" class="btn btn-outline">Détails</a>
+                                <a href="/reservation/<%= scooter.id %>" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">E-Scoot</a>
+                    <p>E-Scoot révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>tw</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Produits</h3>
+                    <ul>
+                        <li><a href="/scooter/1">E-Scoot Urban</a></li>
+                        <li><a href="/scooter/2">E-Scoot Pro</a></li>
+                        <li><a href="/scooter/3">E-Scoot Max</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Nos engagements</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
+                    <p><span>📞</span> 01 23 45 67 89</p>
+                    <p><span>✉️</span> contact@e-scoot.com</p>
+                    <p><span>🕒</span> Lun-Ven : 9h-18h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 E-Scoot. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        function changeImage(src) {
+            document.getElementById('main-scooter-image').src = src;
+            
+            // Update active thumbnail
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(thumb => {
+                if (thumb.src === src) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

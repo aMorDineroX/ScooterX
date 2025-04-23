@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Scoot | Recherche de scooters</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/search.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="/" class="logo">E-<span>Scoot</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="/#features">Avantages</a></li>
+                    <li><a href="/#models">Modèles</a></li>
+                    <li><a href="/#testimonials">Témoignages</a></li>
+                    <% if (locals.user) { %>
+                        <li><a href="/dashboard">Tableau de bord</a></li>
+                        <li><a href="/logout" class="btn btn-outline">Déconnexion</a></li>
+                    <% } else { %>
+                        <li><a href="/login" class="btn btn-outline">Se connecter</a></li>
+                    <% } %>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-header">
+                <h1>Recherche de scooters</h1>
+                <p>Trouvez le scooter électrique parfait pour vos besoins</p>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-filters">
+                    <div class="filter-header">
+                        <h2>Filtres</h2>
+                        <button id="reset-filters">Réinitialiser</button>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Catégorie</h3>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="category-urban" name="category" value="urban">
+                                <label for="category-urban">Urbain</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="category-sport" name="category" value="sport">
+                                <label for="category-sport">Sport</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="category-delivery" name="category" value="delivery">
+                                <label for="category-delivery">Livraison</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="category-offroad" name="category" value="offroad">
+                                <label for="category-offroad">Tout-terrain</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Prix</h3>
+                        <div class="price-range">
+                            <div class="range-inputs">
+                                <input type="range" id="price-min" min="0" max="10000" step="100" value="0">
+                                <input type="range" id="price-max" min="0" max="10000" step="100" value="10000">
+                            </div>
+                            <div class="range-values">
+                                <span id="price-min-value">0 €</span>
+                                <span id="price-max-value">10 000 €</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Autonomie</h3>
+                        <div class="range-slider">
+                            <input type="range" id="range-slider" min="0" max="200" step="10" value="0">
+                            <div class="range-value">
+                                <span id="range-value">0+ km</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Puissance</h3>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="power-1" name="power" value="1000-3000">
+                                <label for="power-1">1000W - 3000W</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="power-2" name="power" value="3001-5000">
+                                <label for="power-2">3001W - 5000W</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="power-3" name="power" value="5001-8000">
+                                <label for="power-3">5001W - 8000W</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="power-4" name="power" value="8001+">
+                                <label for="power-4">8001W+</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Vitesse maximale</h3>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="speed-1" name="speed" value="25-45">
+                                <label for="speed-1">25 - 45 km/h</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="speed-2" name="speed" value="46-65">
+                                <label for="speed-2">46 - 65 km/h</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="speed-3" name="speed" value="66-90">
+                                <label for="speed-3">66 - 90 km/h</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="speed-4" name="speed" value="91+">
+                                <label for="speed-4">91+ km/h</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Couleur</h3>
+                        <div class="color-options">
+                            <div class="color-option">
+                                <input type="checkbox" id="color-black" name="color" value="black">
+                                <label for="color-black" style="background-color: #000;" title="Noir"></label>
+                            </div>
+                            <div class="color-option">
+                                <input type="checkbox" id="color-white" name="color" value="white">
+                                <label for="color-white" style="background-color: #fff; border: 1px solid #ddd;" title="Blanc"></label>
+                            </div>
+                            <div class="color-option">
+                                <input type="checkbox" id="color-red" name="color" value="red">
+                                <label for="color-red" style="background-color: #e74c3c;" title="Rouge"></label>
+                            </div>
+                            <div class="color-option">
+                                <input type="checkbox" id="color-blue" name="color" value="blue">
+                                <label for="color-blue" style="background-color: #3498db;" title="Bleu"></label>
+                            </div>
+                            <div class="color-option">
+                                <input type="checkbox" id="color-green" name="color" value="green">
+                                <label for="color-green" style="background-color: #2ecc71;" title="Vert"></label>
+                            </div>
+                            <div class="color-option">
+                                <input type="checkbox" id="color-yellow" name="color" value="yellow">
+                                <label for="color-yellow" style="background-color: #f1c40f;" title="Jaune"></label>
+                            </div>
+                            <div class="color-option">
+                                <input type="checkbox" id="color-gray" name="color" value="gray">
+                                <label for="color-gray" style="background-color: #95a5a6;" title="Gris"></label>
+                            </div>
+                            <div class="color-option">
+                                <input type="checkbox" id="color-silver" name="color" value="silver">
+                                <label for="color-silver" style="background-color: #bdc3c7;" title="Argent"></label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Disponibilité</h3>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="availability-instock" name="availability" value="instock">
+                                <label for="availability-instock">En stock</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="availability-preorder" name="availability" value="preorder">
+                                <label for="availability-preorder">Précommande</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-actions">
+                        <button id="apply-filters" class="btn btn-primary">Appliquer les filtres</button>
+                    </div>
+                </div>
+                
+                <div class="search-results">
+                    <div class="search-tools">
+                        <div class="search-bar">
+                            <input type="text" id="search-input" placeholder="Rechercher un modèle...">
+                            <button id="search-button">🔍</button>
+                        </div>
+                        <div class="sort-options">
+                            <label for="sort-by">Trier par:</label>
+                            <select id="sort-by">
+                                <option value="relevance">Pertinence</option>
+                                <option value="price-asc">Prix croissant</option>
+                                <option value="price-desc">Prix décroissant</option>
+                                <option value="range-desc">Autonomie</option>
+                                <option value="power-desc">Puissance</option>
+                                <option value="rating-desc">Avis clients</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="results-info">
+                        <p><span id="results-count"><%= scooters.length %></span> résultats trouvés</p>
+                    </div>
+                    
+                    <div class="results-grid">
+                        <% scooters.forEach(scooter => { %>
+                            <div class="result-card" data-id="<%= scooter.id %>" data-category="<%= scooter.category %>" data-price="<%= scooter.price %>" data-range="<%= scooter.range %>" data-power="<%= scooter.power.replace('W', '') %>" data-speed="<%= scooter.speed %>" data-colors="<%= scooter.colors.map(c => c.name.toLowerCase()).join(',') %>" data-availability="<%= scooter.availability ? 'instock' : 'preorder' %>">
+                                <div class="result-image">
+                                    <img src="/images/<%= scooter.image %>" alt="<%= scooter.name %>">
+                                    <% if (scooter.discount) { %>
+                                        <div class="discount-badge">-<%= scooter.discount %>%</div>
+                                    <% } %>
+                                </div>
+                                <div class="result-info">
+                                    <h3><%= scooter.name %></h3>
+                                    <div class="result-rating">
+                                        <% for(let i = 0; i < 5; i++) { %>
+                                            <% if(i < scooter.rating) { %>
+                                                <span class="star filled">★</span>
+                                            <% } else { %>
+                                                <span class="star">★</span>
+                                            <% } %>
+                                        <% } %>
+                                        <span class="rating-count">(<%= scooter.reviewCount %>)</span>
+                                    </div>
+                                    <div class="result-specs">
+                                        <div class="spec">
+                                            <span class="spec-icon">⚡</span>
+                                            <span class="spec-value"><%= scooter.power %></span>
+                                        </div>
+                                        <div class="spec">
+                                            <span class="spec-icon">🔋</span>
+                                            <span class="spec-value"><%= scooter.range %> km</span>
+                                        </div>
+                                        <div class="spec">
+                                            <span class="spec-icon">⏱️</span>
+                                            <span class="spec-value"><%= scooter.speed %> km/h</span>
+                                        </div>
+                                    </div>
+                                    <div class="result-price">
+                                        <% if (scooter.oldPrice) { %>
+                                            <span class="old-price"><%= scooter.oldPrice %> €</span>
+                                        <% } %>
+                                        <span class="current-price"><%= scooter.price %> €</span>
+                                    </div>
+                                    <div class="result-availability">
+                                        <% if (scooter.availability) { %>
+                                            <span class="availability in-stock">En stock</span>
+                                        <% } else { %>
+                                            <span class="availability pre-order">Précommande</span>
+                                        <% } %>
+                                    </div>
+                                    <div class="result-actions">
+                                        <a href="/scooter/<%= scooter.id %>" class="btn btn-outline">Détails</a>
+                                        <a href="/reservation/<%= scooter.id %>" class="btn btn-primary">Réserver</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                    
+                    <div class="pagination">
+                        <button class="pagination-btn prev" disabled>Précédent</button>
+                        <div class="pagination-numbers">
+                            <span class="page-number active">1</span>
+                            <span class="page-number">2</span>
+                            <span class="page-number">3</span>
+                        </div>
+                        <button class="pagination-btn next">Suivant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">E-Scoot</a>
+                    <p>E-Scoot révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>tw</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Produits</h3>
+                    <ul>
+                        <li><a href="/scooter/1">E-Scoot Urban</a></li>
+                        <li><a href="/scooter/2">E-Scoot Pro</a></li>
+                        <li><a href="/scooter/3">E-Scoot Max</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Nos engagements</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
+                    <p><span>📞</span> 01 23 45 67 89</p>
+                    <p><span>✉️</span> contact@e-scoot.com</p>
+                    <p><span>🕒</span> Lun-Ven : 9h-18h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 E-Scoot. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/search.js"></script>
+</body>
+</html>

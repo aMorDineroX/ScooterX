@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Scoot | Réservation</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/reservation.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="/" class="logo">E-<span>Scoot</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="/#features">Avantages</a></li>
+                    <li><a href="/#models">Modèles</a></li>
+                    <li><a href="/#testimonials">Témoignages</a></li>
+                    <% if (locals.user) { %>
+                        <li><a href="/dashboard">Tableau de bord</a></li>
+                        <li><a href="/logout" class="btn btn-outline">Déconnexion</a></li>
+                    <% } else { %>
+                        <li><a href="/login" class="btn btn-outline">Se connecter</a></li>
+                    <% } %>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section">
+        <div class="container">
+            <h1>Réservation de scooter</h1>
+            
+            <div class="reservation-content">
+                <div class="reservation-form-container">
+                    <form id="reservation-form" action="/reservation/submit" method="POST">
+                        <input type="hidden" name="scooterId" value="<%= scooter.id %>">
+                        
+                        <div class="form-step active" id="step-1">
+                            <h2>1. Sélectionnez votre modèle</h2>
+                            <div class="model-selection">
+                                <div class="model-card <%= scooter.id === 1 ? 'selected' : '' %>" data-model-id="1">
+                                    <div class="model-image">
+                                        <img src="/images/scooter-urban.jpg" alt="E-Scoot Urban">
+                                    </div>
+                                    <div class="model-info">
+                                        <h3>E-Scoot Urban</h3>
+                                        <div class="price">2.490 €</div>
+                                        <div class="model-specs">
+                                            <div class="model-spec">
+                                                <span>⚡ 3000W</span>
+                                            </div>
+                                            <div class="model-spec">
+                                                <span>🔋 70km</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="model-card <%= scooter.id === 2 ? 'selected' : '' %>" data-model-id="2">
+                                    <div class="model-image">
+                                        <img src="/images/scooter-pro.jpg" alt="E-Scoot Pro">
+                                    </div>
+                                    <div class="model-info">
+                                        <h3>E-Scoot Pro</h3>
+                                        <div class="price">3.290 €</div>
+                                        <div class="model-specs">
+                                            <div class="model-spec">
+                                                <span>⚡ 5000W</span>
+                                            </div>
+                                            <div class="model-spec">
+                                                <span>🔋 100km</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="model-card <%= scooter.id === 3 ? 'selected' : '' %>" data-model-id="3">
+                                    <div class="model-image">
+                                        <img src="/images/scooter-max.jpg" alt="E-Scoot Max">
+                                    </div>
+                                    <div class="model-info">
+                                        <h3>E-Scoot Max</h3>
+                                        <div class="price">4.590 €</div>
+                                        <div class="model-specs">
+                                            <div class="model-spec">
+                                                <span>⚡ 8000W</span>
+                                            </div>
+                                            <div class="model-spec">
+                                                <span>🔋 150km</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-primary next-step">Continuer</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-step" id="step-2">
+                            <h2>2. Choisissez votre couleur et options</h2>
+                            <div class="form-group">
+                                <label>Couleur</label>
+                                <div class="color-options">
+                                    <% scooter.colors.forEach((color, index) => { %>
+                                        <div class="color-option <%= index === 0 ? 'selected' : '' %>">
+                                            <input type="radio" name="color" id="color-<%= index %>" value="<%= color.name %>" <%= index === 0 ? 'checked' : '' %>>
+                                            <label for="color-<%= index %>" style="background-color: <%= color.code %>;" title="<%= color.name %>"></label>
+                                        </div>
+                                    <% }); %>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Options supplémentaires</label>
+                                <div class="options-list">
+                                    <div class="option-item">
+                                        <input type="checkbox" name="options" id="option-1" value="Siège passager">
+                                        <label for="option-1">
+                                            <span class="option-name">Siège passager</span>
+                                            <span class="option-price">+149 €</span>
+                                        </label>
+                                    </div>
+                                    <div class="option-item">
+                                        <input type="checkbox" name="options" id="option-2" value="Top case">
+                                        <label for="option-2">
+                                            <span class="option-name">Top case</span>
+                                            <span class="option-price">+199 €</span>
+                                        </label>
+                                    </div>
+                                    <div class="option-item">
+                                        <input type="checkbox" name="options" id="option-3" value="Antivol renforcé">
+                                        <label for="option-3">
+                                            <span class="option-name">Antivol renforcé</span>
+                                            <span class="option-price">+89 €</span>
+                                        </label>
+                                    </div>
+                                    <div class="option-item">
+                                        <input type="checkbox" name="options" id="option-4" value="Extension de garantie">
+                                        <label for="option-4">
+                                            <span class="option-name">Extension de garantie (2 ans)</span>
+                                            <span class="option-price">+299 €</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-outline prev-step">Retour</button>
+                                <button type="button" class="btn btn-primary next-step">Continuer</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-step" id="step-3">
+                            <h2>3. Informations personnelles</h2>
+                            
+                            <div class="form-group">
+                                <label for="name">Nom complet</label>
+                                <input type="text" id="name" name="name" required value="<%= user ? user.name : '' %>">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required value="<%= user ? user.email : '' %>">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">Adresse de livraison</label>
+                                <input type="text" id="address" name="address" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label for="postal">Code postal</label>
+                                    <input type="text" id="postal" name="postal" required>
+                                </div>
+                                <div class="form-group half">
+                                    <label for="city">Ville</label>
+                                    <input type="text" id="city" name="city" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-outline prev-step">Retour</button>
+                                <button type="button" class="btn btn-primary next-step">Continuer</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-step" id="step-4">
+                            <h2>4. Méthode de paiement</h2>
+                            
+                            <div class="payment-options">
+                                <div class="payment-option">
+                                    <input type="radio" name="payment_method" id="payment-full" value="full" checked>
+                                    <label for="payment-full">
+                                        <div class="payment-title">Paiement intégral</div>
+                                        <div class="payment-description">Payez la totalité du montant en une seule fois</div>
+                                    </label>
+                                </div>
+                                
+                                <div class="payment-option">
+                                    <input type="radio" name="payment_method" id="payment-installments" value="installments">
+                                    <label for="payment-installments">
+                                        <div class="payment-title">Paiement en plusieurs fois</div>
+                                        <div class="payment-description">Étalez votre paiement sur 12, 24 ou 36 mois</div>
+                                    </label>
+                                </div>
+                                
+                                <div class="payment-option">
+                                    <input type="radio" name="payment_method" id="payment-leasing" value="leasing">
+                                    <label for="payment-leasing">
+                                        <div class="payment-title">Location longue durée</div>
+                                        <div class="payment-description">Louez votre scooter avec option d'achat</div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="installment-options" style="display: none;">
+                                <label>Durée du financement</label>
+                                <div class="installment-selector">
+                                    <div class="installment-option selected" data-months="12">
+                                        <div class="duration">12 mois</div>
+                                        <div class="monthly-amount">249 €/mois</div>
+                                    </div>
+                                    <div class="installment-option" data-months="24">
+                                        <div class="duration">24 mois</div>
+                                        <div class="monthly-amount">129 €/mois</div>
+                                    </div>
+                                    <div class="installment-option" data-months="36">
+                                        <div class="duration">36 mois</div>
+                                        <div class="monthly-amount">89 €/mois</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="installment_duration" value="12">
+                            </div>
+                            
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-outline prev-step">Retour</button>
+                                <button type="button" class="btn btn-primary next-step">Récapitulatif</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-step" id="step-5">
+                            <h2>5. Récapitulatif de votre commande</h2>
+                            
+                            <div class="order-summary">
+                                <div class="summary-item">
+                                    <div class="summary-label">Modèle</div>
+                                    <div class="summary-value" id="summary-model"><%= scooter.name %></div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">Couleur</div>
+                                    <div class="summary-value" id="summary-color"><%= scooter.colors[0].name %></div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">Options</div>
+                                    <div class="summary-value" id="summary-options">Aucune</div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">Méthode de paiement</div>
+                                    <div class="summary-value" id="summary-payment">Paiement intégral</div>
+                                </div>
+                                <div class="summary-item total">
+                                    <div class="summary-label">Total</div>
+                                    <div class="summary-value" id="summary-total"><%= scooter.price %> €</div>
+                                </div>
+                            </div>
+                            
+                            <div class="terms-agreement">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">J'accepte les <a href="#" target="_blank">conditions générales de vente</a> et la <a href="#" target="_blank">politique de confidentialité</a>.</label>
+                            </div>
+                            
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-outline prev-step">Retour</button>
+                                <button type="submit" class="btn btn-primary">Confirmer la réservation</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="reservation-summary">
+                    <div class="summary-card">
+                        <h3>Votre sélection</h3>
+                        <div class="selected-model">
+                            <img src="/images/<%= scooter.image %>" alt="<%= scooter.name %>" id="summary-image">
+                            <div class="model-details">
+                                <h4 id="card-model-name"><%= scooter.name %></h4>
+                                <div class="model-price" id="card-model-price"><%= scooter.price %> €</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-details">
+                            <div class="summary-row">
+                                <div class="detail-label">Couleur</div>
+                                <div class="detail-value" id="card-color"><%= scooter.colors[0].name %></div>
+                            </div>
+                            <div class="summary-row" id="options-row" style="display: none;">
+                                <div class="detail-label">Options</div>
+                                <div class="detail-value" id="card-options"></div>
+                            </div>
+                            <div class="summary-row">
+                                <div class="detail-label">Livraison</div>
+                                <div class="detail-value">Gratuite</div>
+                            </div>
+                        </div>
+                        
+                        <div class="price-breakdown">
+                            <div class="price-row subtotal">
+                                <div class="price-label">Sous-total</div>
+                                <div class="price-value" id="card-subtotal"><%= scooter.price %> €</div>
+                            </div>
+                            <div class="price-row options" id="options-price-row" style="display: none;">
+                                <div class="price-label">Options</div>
+                                <div class="price-value" id="card-options-price">0 €</div>
+                            </div>
+                            <div class="price-row total">
+                                <div class="price-label">Total</div>
+                                <div class="price-value" id="card-total"><%= scooter.price %> €</div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-info" id="payment-full-info">
+                            <div class="payment-method">Paiement intégral</div>
+                            <div class="payment-amount"><%= scooter.price %> €</div>
+                        </div>
+                        
+                        <div class="payment-info" id="payment-installments-info" style="display: none;">
+                            <div class="payment-method">Paiement en <span id="installment-months">12</span> fois</div>
+                            <div class="payment-amount"><span id="installment-amount">249</span> €/mois</div>
+                        </div>
+                        
+                        <div class="payment-info" id="payment-leasing-info" style="display: none;">
+                            <div class="payment-method">Location longue durée</div>
+                            <div class="payment-amount"><span id="leasing-amount">199</span> €/mois</div>
+                        </div>
+                        
+                        <div class="summary-footer">
+                            <div class="delivery-info">
+                                <div class="delivery-icon">🚚</div>
+                                <div class="delivery-text">Livraison estimée : 3-5 jours ouvrables</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="help-card">
+                        <h3>Besoin d'aide ?</h3>
+                        <p>Notre équipe est disponible pour répondre à toutes vos questions.</p>
+                        <div class="contact-options">
+                            <a href="tel:0123456789" class="contact-option">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-text">01 23 45 67 89</div>
+                            </a>
+                            <a href="mailto:contact@e-scoot.com" class="contact-option">
+                                <div class="contact-icon">✉️</div>
+                                <div class="contact-text">contact@e-scoot.com</div>
+                            </a>
+                            <a href="#" class="contact-option">
+                                <div class="contact-icon">💬</div>
+                                <div class="contact-text">Chat en direct</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">E-Scoot</a>
+                    <p>E-Scoot révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>tw</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Produits</h3>
+                    <ul>
+                        <li><a href="/scooter/1">E-Scoot Urban</a></li>
+                        <li><a href="/scooter/2">E-Scoot Pro</a></li>
+                        <li><a href="/scooter/3">E-Scoot Max</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Nos engagements</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
+                    <p><span>📞</span> 01 23 45 67 89</p>
+                    <p><span>✉️</span> contact@e-scoot.com</p>
+                    <p><span>🕒</span> Lun-Ven : 9h-18h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 E-Scoot. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/reservation.js"></script>
+</body>
+</html>

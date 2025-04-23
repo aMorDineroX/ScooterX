@@ -1,0 +1,85 @@
+<%- include('partials/header', { 
+    title: locals.register ? 'Inscription' : 'Connexion', 
+    description: locals.register ? 'Créez un compte ScooterX pour réserver votre scooter électrique.' : 'Connectez-vous à votre compte ScooterX pour gérer vos réservations.',
+    cssFiles: ['auth.css']
+}) %>
+
+<div class="auth-container" id="container" class="<%= locals.register ? 'right-panel-active' : '' %>">
+    <div class="form-container sign-up-container">
+        <form action="/register" method="POST">
+            <h1>Créer un compte</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i>f</i></a>
+                <a href="#" class="social"><i>g</i></a>
+                <a href="#" class="social"><i>in</i></a>
+            </div>
+            <span>ou utilisez votre email pour vous inscrire</span>
+            
+            <% if (locals.error && locals.register) { %>
+                <div class="error-message">
+                    <%= error %>
+                </div>
+            <% } %>
+            
+            <input type="text" name="name" placeholder="Nom" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Mot de passe" required />
+            <button type="submit">S'inscrire</button>
+            <div class="form-footer">
+                En vous inscrivant, vous acceptez nos <a href="#">Conditions d'utilisation</a> et notre <a href="#">Politique de confidentialité</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="form-container sign-in-container">
+        <form action="/login" method="POST">
+            <h1>Se connecter</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i>f</i></a>
+                <a href="#" class="social"><i>g</i></a>
+                <a href="#" class="social"><i>in</i></a>
+            </div>
+            <span>ou utilisez votre compte</span>
+            
+            <% if (locals.error && !locals.register) { %>
+                <div class="error-message">
+                    <%= error %>
+                </div>
+            <% } %>
+            
+            <% if (locals.success) { %>
+                <div class="success-message">
+                    <%= success %>
+                </div>
+            <% } %>
+            
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Mot de passe" required />
+            <a href="#" class="forgot-password">Mot de passe oublié?</a>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+    
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Bon retour!</h1>
+                <p>Pour rester connecté avec nous, veuillez vous connecter avec vos informations personnelles</p>
+                <a href="/login" class="ghost-btn">Se connecter</a>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Bonjour!</h1>
+                <p>Entrez vos données personnelles et commencez votre voyage avec nous</p>
+                <a href="/register" class="ghost-btn">S'inscrire</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="home-link">
+    <a href="/">Retour à l'accueil</a>
+</div>
+
+<%- include('partials/scripts', { jsFiles: ['auth.js'] }) %>
+</body>
+</html>

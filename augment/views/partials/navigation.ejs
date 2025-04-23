@@ -1,0 +1,42 @@
+<!-- Navigation Bar -->
+<header id="header" class="<%= locals.dashboardHeader ? 'dashboard-header' : '' %>">
+    <div class="container nav-container">
+        <a href="/" class="logo">Scooter<span>X</span></a>
+        
+        <button class="mobile-menu-btn">☰</button>
+        
+        <nav>
+            <ul id="nav-menu">
+                <% if (!locals.dashboardHeader) { %>
+                    <li><a href="/" class="<%= locals.activePage === 'home' ? 'active' : '' %>">Accueil</a></li>
+                    <li><a href="/search" class="<%= locals.activePage === 'search' ? 'active' : '' %>">Nos scooters</a></li>
+                    <li><a href="/#features" class="<%= locals.activePage === 'features' ? 'active' : '' %>">Avantages</a></li>
+                    <li><a href="/#testimonials" class="<%= locals.activePage === 'testimonials' ? 'active' : '' %>">Témoignages</a></li>
+                <% } else { %>
+                    <li><a href="/" class="<%= locals.activePage === 'home' ? 'active' : '' %>">Accueil</a></li>
+                    <li><a href="/dashboard" class="<%= locals.activePage === 'dashboard' ? 'active' : '' %>">Tableau de bord</a></li>
+                    <li><a href="/dashboard/reservations" class="<%= locals.activePage === 'reservations' ? 'active' : '' %>">Mes réservations</a></li>
+                    <li><a href="/profile" class="<%= locals.activePage === 'profile' ? 'active' : '' %>">Mon profil</a></li>
+                <% } %>
+                
+                <% if (locals.user) { %>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">
+                            <span class="user-name"><%= user.name || user.email.split('@')[0] %></span>
+                            <span class="dropdown-icon">▼</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/dashboard">Tableau de bord</a></li>
+                            <li><a href="/profile">Mon profil</a></li>
+                            <li><a href="/dashboard/reservations">Mes réservations</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Déconnexion</a></li>
+                        </ul>
+                    </li>
+                <% } else { %>
+                    <li><a href="/login" class="btn btn-outline">Se connecter</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+</header>

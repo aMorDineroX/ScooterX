@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Scoot | Tableau de bord</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="dashboard-header">
+        <div class="container nav-container">
+            <a href="/" class="logo">E-<span>Scoot</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/dashboard" class="active">Tableau de bord</a></li>
+                    <li><a href="/dashboard/reservations">Mes réservations</a></li>
+                    <li><a href="/dashboard/profile">Mon profil</a></li>
+                    <li><a href="/logout" class="btn btn-outline">Déconnexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dashboard Main Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <div class="dashboard-welcome">
+                <h1>Bienvenue, <%= user.email.split('@')[0] %> !</h1>
+                <p>Gérez vos réservations, consultez vos trajets et accédez à vos informations personnelles.</p>
+            </div>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">🛴</div>
+                    <div class="stat-info">
+                        <h3>Trajets effectués</h3>
+                        <p class="stat-value">12</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-info">
+                        <h3>Énergie économisée</h3>
+                        <p class="stat-value">45 kg CO₂</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3>Économies réalisées</h3>
+                        <p class="stat-value">120 €</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔋</div>
+                    <div class="stat-info">
+                        <h3>Points fidélité</h3>
+                        <p class="stat-value">350 pts</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-sections">
+                <div class="dashboard-section">
+                    <h2>Réservations à venir</h2>
+                    <% if (true) { %>
+                        <div class="reservation-list">
+                            <div class="reservation-card">
+                                <div class="reservation-header">
+                                    <h3>E-Scoot Urban</h3>
+                                    <span class="reservation-status confirmed">Confirmée</span>
+                                </div>
+                                <div class="reservation-details">
+                                    <p><strong>Date :</strong> 15 mai 2025</p>
+                                    <p><strong>Heure :</strong> 10:00 - 18:00</p>
+                                    <p><strong>Lieu :</strong> Station Paris Centre</p>
+                                </div>
+                                <div class="reservation-actions">
+                                    <button class="btn btn-outline">Modifier</button>
+                                    <button class="btn btn-danger">Annuler</button>
+                                </div>
+                            </div>
+                            <div class="reservation-card">
+                                <div class="reservation-header">
+                                    <h3>E-Scoot Pro</h3>
+                                    <span class="reservation-status pending">En attente</span>
+                                </div>
+                                <div class="reservation-details">
+                                    <p><strong>Date :</strong> 22 mai 2025</p>
+                                    <p><strong>Heure :</strong> 09:00 - 17:00</p>
+                                    <p><strong>Lieu :</strong> Station La Défense</p>
+                                </div>
+                                <div class="reservation-actions">
+                                    <button class="btn btn-outline">Modifier</button>
+                                    <button class="btn btn-danger">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <div class="empty-state">
+                            <p>Vous n'avez pas de réservations à venir.</p>
+                            <a href="#" class="btn btn-primary">Réserver maintenant</a>
+                        </div>
+                    <% } %>
+                </div>
+
+                <div class="dashboard-section">
+                    <h2>Activité récente</h2>
+                    <div class="activity-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">✅</div>
+                            <div class="timeline-content">
+                                <h4>Réservation confirmée</h4>
+                                <p>Votre réservation pour le E-Scoot Urban a été confirmée.</p>
+                                <span class="timeline-date">Il y a 2 jours</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">🔄</div>
+                            <div class="timeline-content">
+                                <h4>Trajet terminé</h4>
+                                <p>Vous avez parcouru 15 km avec le E-Scoot Max.</p>
+                                <span class="timeline-date">Il y a 5 jours</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">💰</div>
+                            <div class="timeline-content">
+                                <h4>Paiement effectué</h4>
+                                <p>Paiement de 45€ pour la location du 28 avril.</p>
+                                <span class="timeline-date">Il y a 1 semaine</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-sections">
+                <div class="dashboard-section full-width">
+                    <h2>Scooters recommandés</h2>
+                    <div class="scooter-recommendations">
+                        <div class="model-card">
+                            <div class="model-image">
+                                <img src="/images/scooter-urban.jpg" alt="E-Scoot Urban" />
+                            </div>
+                            <div class="model-info">
+                                <h3>E-Scoot Urban</h3>
+                                <div class="price">2.490 €</div>
+                                <div class="model-specs">
+                                    <div class="model-spec">
+                                        <span>⚡ 3000W</span>
+                                    </div>
+                                    <div class="model-spec">
+                                        <span>🔋 70km</span>
+                                    </div>
+                                    <div class="model-spec">
+                                        <span>⏱️ 45km/h</span>
+                                    </div>
+                                    <div class="model-spec">
+                                        <span>⚖️ 75kg</span>
+                                    </div>
+                                </div>
+                                <div class="model-actions">
+                                    <a href="#" class="btn btn-outline">Détails</a>
+                                    <a href="#" class="btn btn-primary">Réserver</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-image">
+                                <img src="/images/scooter-pro.jpg" alt="E-Scoot Pro" />
+                            </div>
+                            <div class="model-info">
+                                <h3>E-Scoot Pro</h3>
+                                <div class="price">3.290 €</div>
+                                <div class="model-specs">
+                                    <div class="model-spec">
+                                        <span>⚡ 5000W</span>
+                                    </div>
+                                    <div class="model-spec">
+                                        <span>🔋 100km</span>
+                                    </div>
+                                    <div class="model-spec">
+                                        <span>⏱️ 65km/h</span>
+                                    </div>
+                                    <div class="model-spec">
+                                        <span>⚖️ 85kg</span>
+                                    </div>
+                                </div>
+                                <div class="model-actions">
+                                    <a href="#" class="btn btn-outline">Détails</a>
+                                    <a href="#" class="btn btn-primary">Réserver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">E-Scoot</a>
+                    <p>E-Scoot révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>tw</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Produits</h3>
+                    <ul>
+                        <li><a href="#">E-Scoot Urban</a></li>
+                        <li><a href="#">E-Scoot Pro</a></li>
+                        <li><a href="#">E-Scoot Max</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Nos engagements</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
+                    <p><span>📞</span> 01 23 45 67 89</p>
+                    <p><span>✉️</span> contact@e-scoot.com</p>
+                    <p><span>🕒</span> Lun-Ven : 9h-18h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 E-Scoot. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

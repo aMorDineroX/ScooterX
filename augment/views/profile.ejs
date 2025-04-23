@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Scoot | Mon Profil</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="dashboard-header">
+        <div class="container nav-container">
+            <a href="/" class="logo">E-<span>Scoot</span></a>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/dashboard">Tableau de bord</a></li>
+                    <li><a href="/dashboard/reservations">Mes réservations</a></li>
+                    <li><a href="/profile" class="active">Mon profil</a></li>
+                    <li><a href="/logout" class="btn btn-outline">Déconnexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Profile Main Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <div class="dashboard-welcome">
+                <h1>Mon Profil</h1>
+                <p>Gérez vos informations personnelles et vos préférences.</p>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-sidebar">
+                    <div class="profile-avatar">
+                        <img src="/images/avatar-default.jpg" alt="<%= user.name || user.email %>" id="profile-image">
+                        <button class="change-avatar-btn">Modifier</button>
+                        <input type="file" id="avatar-upload" style="display: none;">
+                    </div>
+                    <div class="profile-menu">
+                        <a href="#personal-info" class="profile-menu-item active">Informations personnelles</a>
+                        <a href="#security" class="profile-menu-item">Sécurité</a>
+                        <a href="#payment-methods" class="profile-menu-item">Moyens de paiement</a>
+                        <a href="#addresses" class="profile-menu-item">Adresses</a>
+                        <a href="#preferences" class="profile-menu-item">Préférences</a>
+                        <a href="#notifications" class="profile-menu-item">Notifications</a>
+                    </div>
+                </div>
+                
+                <div class="profile-main">
+                    <div class="profile-section active" id="personal-info">
+                        <h2>Informations personnelles</h2>
+                        <form id="personal-info-form" class="profile-form">
+                            <div class="form-group">
+                                <label for="name">Nom complet</label>
+                                <input type="text" id="name" name="name" value="<%= user.name || '' %>">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" value="<%= user.email %>" readonly>
+                                </div>
+                                <div class="form-group half">
+                                    <label for="phone">Téléphone</label>
+                                    <input type="tel" id="phone" name="phone" value="<%= user.phone || '' %>">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label for="birthdate">Date de naissance</label>
+                                    <input type="date" id="birthdate" name="birthdate" value="<%= user.birthdate || '' %>">
+                                </div>
+                                <div class="form-group half">
+                                    <label for="gender">Genre</label>
+                                    <select id="gender" name="gender">
+                                        <option value="">Sélectionner</option>
+                                        <option value="male" <%= user.gender === 'male' ? 'selected' : '' %>>Homme</option>
+                                        <option value="female" <%= user.gender === 'female' ? 'selected' : '' %>>Femme</option>
+                                        <option value="other" <%= user.gender === 'other' ? 'selected' : '' %>>Autre</option>
+                                        <option value="prefer-not-to-say" <%= user.gender === 'prefer-not-to-say' ? 'selected' : '' %>>Je préfère ne pas préciser</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="profile-section" id="security">
+                        <h2>Sécurité</h2>
+                        <form id="security-form" class="profile-form">
+                            <div class="form-group">
+                                <label for="current-password">Mot de passe actuel</label>
+                                <input type="password" id="current-password" name="current_password">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label for="new-password">Nouveau mot de passe</label>
+                                    <input type="password" id="new-password" name="new_password">
+                                </div>
+                                <div class="form-group half">
+                                    <label for="confirm-password">Confirmer le mot de passe</label>
+                                    <input type="password" id="confirm-password" name="confirm_password">
+                                </div>
+                            </div>
+                            <div class="password-requirements">
+                                <p>Votre mot de passe doit contenir :</p>
+                                <ul>
+                                    <li>Au moins 8 caractères</li>
+                                    <li>Au moins une lettre majuscule</li>
+                                    <li>Au moins une lettre minuscule</li>
+                                    <li>Au moins un chiffre</li>
+                                    <li>Au moins un caractère spécial</li>
+                                </ul>
+                            </div>
+                            <div class="form-group">
+                                <label for="two-factor">Authentification à deux facteurs</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="two-factor" name="two_factor" <%= user.twoFactor ? 'checked' : '' %>>
+                                    <label for="two-factor"></label>
+                                </div>
+                                <p class="form-help">L'authentification à deux facteurs ajoute une couche de sécurité supplémentaire à votre compte.</p>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Mettre à jour le mot de passe</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="profile-section" id="payment-methods">
+                        <h2>Moyens de paiement</h2>
+                        <div class="payment-methods-list">
+                            <% if (user.paymentMethods && user.paymentMethods.length > 0) { %>
+                                <% user.paymentMethods.forEach((method, index) => { %>
+                                    <div class="payment-method-card">
+                                        <div class="payment-method-icon">
+                                            <% if (method.type === 'card') { %>
+                                                <% if (method.brand === 'visa') { %>
+                                                    <span class="card-icon visa">Visa</span>
+                                                <% } else if (method.brand === 'mastercard') { %>
+                                                    <span class="card-icon mastercard">Mastercard</span>
+                                                <% } else if (method.brand === 'amex') { %>
+                                                    <span class="card-icon amex">Amex</span>
+                                                <% } else { %>
+                                                    <span class="card-icon">Card</span>
+                                                <% } %>
+                                            <% } else if (method.type === 'paypal') { %>
+                                                <span class="payment-icon paypal">PayPal</span>
+                                            <% } else if (method.type === 'bank') { %>
+                                                <span class="payment-icon bank">Bank</span>
+                                            <% } %>
+                                        </div>
+                                        <div class="payment-method-details">
+                                            <div class="payment-method-name"><%= method.name %></div>
+                                            <div class="payment-method-info">
+                                                <% if (method.type === 'card') { %>
+                                                    **** **** **** <%= method.last4 %>
+                                                <% } else if (method.type === 'paypal') { %>
+                                                    <%= method.email %>
+                                                <% } else if (method.type === 'bank') { %>
+                                                    <%= method.bankName %> **** <%= method.last4 %>
+                                                <% } %>
+                                            </div>
+                                            <div class="payment-method-expiry">
+                                                <% if (method.type === 'card') { %>
+                                                    Expire le <%= method.expMonth %>/<%= method.expYear %>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="payment-method-actions">
+                                            <button class="btn-icon edit-payment" data-id="<%= method.id %>">✏️</button>
+                                            <button class="btn-icon delete-payment" data-id="<%= method.id %>">🗑️</button>
+                                            <% if (!method.default) { %>
+                                                <button class="btn-icon set-default-payment" data-id="<%= method.id %>">⭐</button>
+                                            <% } else { %>
+                                                <span class="default-badge">Par défaut</span>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                <% }); %>
+                            <% } else { %>
+                                <div class="empty-state">
+                                    <p>Vous n'avez pas encore ajouté de moyen de paiement.</p>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="add-payment-method">
+                            <button class="btn btn-outline" id="add-payment-btn">+ Ajouter un moyen de paiement</button>
+                        </div>
+                        
+                        <div class="payment-method-form" style="display: none;">
+                            <h3>Ajouter un moyen de paiement</h3>
+                            <form id="payment-method-form" class="profile-form">
+                                <div class="form-group">
+                                    <label for="payment-type">Type de paiement</label>
+                                    <select id="payment-type" name="payment_type">
+                                        <option value="card">Carte bancaire</option>
+                                        <option value="paypal">PayPal</option>
+                                        <option value="bank">Compte bancaire</option>
+                                    </select>
+                                </div>
+                                
+                                <div id="card-payment-fields">
+                                    <div class="form-group">
+                                        <label for="card-name">Nom sur la carte</label>
+                                        <input type="text" id="card-name" name="card_name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card-number">Numéro de carte</label>
+                                        <input type="text" id="card-number" name="card_number" placeholder="1234 5678 9012 3456">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group half">
+                                            <label for="card-expiry">Date d'expiration</label>
+                                            <input type="text" id="card-expiry" name="card_expiry" placeholder="MM/AA">
+                                        </div>
+                                        <div class="form-group half">
+                                            <label for="card-cvc">CVC</label>
+                                            <input type="text" id="card-cvc" name="card_cvc" placeholder="123">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="paypal-payment-fields" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="paypal-email">Email PayPal</label>
+                                        <input type="email" id="paypal-email" name="paypal_email">
+                                    </div>
+                                </div>
+                                
+                                <div id="bank-payment-fields" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="bank-name">Nom de la banque</label>
+                                        <input type="text" id="bank-name" name="bank_name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="account-name">Titulaire du compte</label>
+                                        <input type="text" id="account-name" name="account_name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="iban">IBAN</label>
+                                        <input type="text" id="iban" name="iban">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bic">BIC</label>
+                                        <input type="text" id="bic" name="bic">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="default-payment">Définir comme moyen de paiement par défaut</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="default-payment" name="default_payment">
+                                        <label for="default-payment"></label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-outline" id="cancel-payment-btn">Annuler</button>
+                                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section" id="addresses">
+                        <h2>Adresses</h2>
+                        <div class="addresses-list">
+                            <% if (user.addresses && user.addresses.length > 0) { %>
+                                <% user.addresses.forEach((address, index) => { %>
+                                    <div class="address-card">
+                                        <div class="address-type">
+                                            <%= address.type === 'billing' ? 'Facturation' : 'Livraison' %>
+                                            <% if (address.default) { %>
+                                                <span class="default-badge">Par défaut</span>
+                                            <% } %>
+                                        </div>
+                                        <div class="address-details">
+                                            <div class="address-name"><%= address.name %></div>
+                                            <div class="address-line"><%= address.street %></div>
+                                            <div class="address-line"><%= address.postalCode %> <%= address.city %></div>
+                                            <div class="address-line"><%= address.country %></div>
+                                            <div class="address-line"><%= address.phone %></div>
+                                        </div>
+                                        <div class="address-actions">
+                                            <button class="btn-icon edit-address" data-id="<%= address.id %>">✏️</button>
+                                            <button class="btn-icon delete-address" data-id="<%= address.id %>">🗑️</button>
+                                            <% if (!address.default) { %>
+                                                <button class="btn-icon set-default-address" data-id="<%= address.id %>" data-type="<%= address.type %>">⭐</button>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                <% }); %>
+                            <% } else { %>
+                                <div class="empty-state">
+                                    <p>Vous n'avez pas encore ajouté d'adresse.</p>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="add-address">
+                            <button class="btn btn-outline" id="add-address-btn">+ Ajouter une adresse</button>
+                        </div>
+                        
+                        <div class="address-form" style="display: none;">
+                            <h3>Ajouter une adresse</h3>
+                            <form id="address-form" class="profile-form">
+                                <div class="form-group">
+                                    <label for="address-type">Type d'adresse</label>
+                                    <select id="address-type" name="address_type">
+                                        <option value="shipping">Livraison</option>
+                                        <option value="billing">Facturation</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-name">Nom complet</label>
+                                    <input type="text" id="address-name" name="address_name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-street">Adresse</label>
+                                    <input type="text" id="address-street" name="address_street">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group half">
+                                        <label for="address-postal">Code postal</label>
+                                        <input type="text" id="address-postal" name="address_postal">
+                                    </div>
+                                    <div class="form-group half">
+                                        <label for="address-city">Ville</label>
+                                        <input type="text" id="address-city" name="address_city">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-country">Pays</label>
+                                    <select id="address-country" name="address_country">
+                                        <option value="FR">France</option>
+                                        <option value="BE">Belgique</option>
+                                        <option value="CH">Suisse</option>
+                                        <option value="LU">Luxembourg</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-phone">Téléphone</label>
+                                    <input type="tel" id="address-phone" name="address_phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="default-address">Définir comme adresse par défaut</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="default-address" name="default_address">
+                                        <label for="default-address"></label>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-outline" id="cancel-address-btn">Annuler</button>
+                                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section" id="preferences">
+                        <h2>Préférences</h2>
+                        <form id="preferences-form" class="profile-form">
+                            <div class="form-group">
+                                <label for="language">Langue</label>
+                                <select id="language" name="language">
+                                    <option value="fr" <%= user.preferences && user.preferences.language === 'fr' ? 'selected' : '' %>>Français</option>
+                                    <option value="en" <%= user.preferences && user.preferences.language === 'en' ? 'selected' : '' %>>English</option>
+                                    <option value="de" <%= user.preferences && user.preferences.language === 'de' ? 'selected' : '' %>>Deutsch</option>
+                                    <option value="es" <%= user.preferences && user.preferences.language === 'es' ? 'selected' : '' %>>Español</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="currency">Devise</label>
+                                <select id="currency" name="currency">
+                                    <option value="EUR" <%= user.preferences && user.preferences.currency === 'EUR' ? 'selected' : '' %>>Euro (€)</option>
+                                    <option value="USD" <%= user.preferences && user.preferences.currency === 'USD' ? 'selected' : '' %>>Dollar américain ($)</option>
+                                    <option value="GBP" <%= user.preferences && user.preferences.currency === 'GBP' ? 'selected' : '' %>>Livre sterling (£)</option>
+                                    <option value="CHF" <%= user.preferences && user.preferences.currency === 'CHF' ? 'selected' : '' %>>Franc suisse (CHF)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="theme">Thème</label>
+                                <select id="theme" name="theme">
+                                    <option value="light" <%= user.preferences && user.preferences.theme === 'light' ? 'selected' : '' %>>Clair</option>
+                                    <option value="dark" <%= user.preferences && user.preferences.theme === 'dark' ? 'selected' : '' %>>Sombre</option>
+                                    <option value="system" <%= user.preferences && user.preferences.theme === 'system' ? 'selected' : '' %>>Système</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Enregistrer les préférences</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="profile-section" id="notifications">
+                        <h2>Notifications</h2>
+                        <form id="notifications-form" class="profile-form">
+                            <div class="notification-group">
+                                <h3>Notifications par email</h3>
+                                <div class="form-group">
+                                    <label for="email-orders">Commandes et livraisons</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="email-orders" name="email_orders" <%= user.notifications && user.notifications.emailOrders ? 'checked' : '' %>>
+                                        <label for="email-orders"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email-promotions">Promotions et offres spéciales</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="email-promotions" name="email_promotions" <%= user.notifications && user.notifications.emailPromotions ? 'checked' : '' %>>
+                                        <label for="email-promotions"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email-news">Actualités et nouveautés</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="email-news" name="email_news" <%= user.notifications && user.notifications.emailNews ? 'checked' : '' %>>
+                                        <label for="email-news"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="notification-group">
+                                <h3>Notifications push</h3>
+                                <div class="form-group">
+                                    <label for="push-orders">Commandes et livraisons</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="push-orders" name="push_orders" <%= user.notifications && user.notifications.pushOrders ? 'checked' : '' %>>
+                                        <label for="push-orders"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="push-promotions">Promotions et offres spéciales</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="push-promotions" name="push_promotions" <%= user.notifications && user.notifications.pushPromotions ? 'checked' : '' %>>
+                                        <label for="push-promotions"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="push-news">Actualités et nouveautés</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="push-news" name="push_news" <%= user.notifications && user.notifications.pushNews ? 'checked' : '' %>>
+                                        <label for="push-news"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="notification-group">
+                                <h3>SMS</h3>
+                                <div class="form-group">
+                                    <label for="sms-orders">Commandes et livraisons</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="sms-orders" name="sms_orders" <%= user.notifications && user.notifications.smsOrders ? 'checked' : '' %>>
+                                        <label for="sms-orders"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sms-promotions">Promotions et offres spéciales</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="sms-promotions" name="sms_promotions" <%= user.notifications && user.notifications.smsPromotions ? 'checked' : '' %>>
+                                        <label for="sms-promotions"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Enregistrer les préférences de notification</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">E-Scoot</a>
+                    <p>E-Scoot révolutionne la mobilité urbaine avec des scooters électriques innovants, performants et respectueux de l'environnement.</p>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>in</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>tw</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Produits</h3>
+                    <ul>
+                        <li><a href="/scooter/1">E-Scoot Urban</a></li>
+                        <li><a href="/scooter/2">E-Scoot Pro</a></li>
+                        <li><a href="/scooter/3">E-Scoot Max</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Nos engagements</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><span>📍</span> 12 rue de la Mobilité, 75001 Paris</p>
+                    <p><span>📞</span> 01 23 45 67 89</p>
+                    <p><span>✉️</span> contact@e-scoot.com</p>
+                    <p><span>🕒</span> Lun-Ven : 9h-18h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 E-Scoot. Tous droits réservés. | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Mentions légales</a> | <a href="#" style="color: rgba(255, 255, 255, 0.5);">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/profile.js"></script>
+</body>
+</html>
